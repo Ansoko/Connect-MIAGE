@@ -1,4 +1,4 @@
-package connect;
+package method1;
 
 public class Jeton {
 

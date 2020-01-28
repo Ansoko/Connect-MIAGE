@@ -6,7 +6,7 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		Plateau p1 = new Plateau(3, 5);
-		p1.methode1();
+		System.out.println(p1.toString());
 	}
 
 }

@@ -1,4 +1,6 @@
 package connect;
+import java.util.Arrays;
+
 import javax.swing.JFrame;
 
 public class Plateau {
@@ -7,6 +9,19 @@ public class Plateau {
 
 	public Plateau(int n, int m) { //n = lignes, m=colonnes
 		plateau = new Jeton[n][m];
+	}
+
+	
+
+	public String toString() {
+		String tab="";
+		for(int i=0; i<plateau.length; i++) {
+			for(int j=0; j<plateau[i].length; j++) {
+				tab = tab + i +"/"+j+" ";
+			}
+			tab = tab + "\n";
+		}
+		return tab;
 	}
 
 
@@ -25,13 +40,8 @@ public class Plateau {
 	}
 	
 	
-	public void methode1() {
-		for(int i=0; i<plateau.length; i++) {
-			for(int j=0; j<plateau[i].length; j++) {
-				System.out.print(i+"/"+j+" ");
-			}
-			System.out.println();
-		}
+	public void methode() {
+		
 	}
 
 }
