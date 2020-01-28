@@ -3,11 +3,13 @@ import javax.swing.JFrame;
 
 public class Plateau {
 	
-	Jeton plateau[][];
+	private Jeton plateau[][];
 
-	public Plateau(int n, int m) {
-		plateau[][] = new Jeton[n][m];
+	public Plateau(int n, int m) { //n = lignes, m=colonnes
+		plateau = new Jeton[n][m];
 	}
+
+
 
 	private void createFenetre() {
 		JFrame fenetre = new JFrame();
@@ -20,6 +22,16 @@ public class Plateau {
 		
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
 		fenetre.setVisible(true);
+	}
+	
+	
+	public void methode1() {
+		for(int i=0; i<plateau.length; i++) {
+			for(int j=0; j<plateau[i].length; j++) {
+				System.out.print(i+"/"+j+" ");
+			}
+			System.out.println();
+		}
 	}
 
 }
