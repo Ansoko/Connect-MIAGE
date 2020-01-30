@@ -1,16 +1,7 @@
-package method1;
+package method2;
 
-public class Tile {
+public class LiteTile {
 
-	public enum marquage{
-		DeadEnd, 
-		Start, 
-		Connect, 
-		Cross;
-		}
-	
-	private marquage state;
-	
 	private boolean n; //4 points cardinaux à retravailler
 	private boolean s;
 	private boolean e;
@@ -23,9 +14,8 @@ public class Tile {
 	 * 7 : croix
 	 */
 	
-	public Tile () {
-		//appel de la factory ?
+	public LiteTile() {
+		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 }

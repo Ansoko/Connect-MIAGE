@@ -1,7 +1,9 @@
-package method1;
+package connect;
 import java.util.Arrays;
 
 import javax.swing.JFrame;
+
+import method1.Tile;
 
 public class Board {
 	
