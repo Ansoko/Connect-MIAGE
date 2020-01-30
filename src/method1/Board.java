@@ -22,8 +22,6 @@ public class Board {
 		return tab;
 	}
 
-
-
 	private void createWindow() {
 		JFrame window = new JFrame();
 
@@ -36,7 +34,6 @@ public class Board {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
 		window.setVisible(true);
 	}
-	
 	
 	public void iterativResearch() {
 		
