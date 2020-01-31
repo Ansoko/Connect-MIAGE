@@ -1,5 +1,6 @@
 package connect;
 import method1.*;
+import method2.Board;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package connect;
+package method2;
 import java.util.Arrays;
 
 import javax.swing.JFrame;
@@ -6,11 +6,13 @@ import javax.swing.JFrame;
 import method1.Tile;
 
 public class Board {
-	
+	public final int LINE = 5;
+	public final int ROW = 5 ;
+	private Circuit longest;
 	private Tile board[][];
 
-	public Board(int n, int m) { //n = lignes, m=colonnes
-		board = new Tile[n][m];
+	public Board() { // automatiques avec les constantes
+		board = new Tile[LINE][ROW];
 	}
 
 	public String toString() {
@@ -27,7 +29,7 @@ public class Board {
 	private void createWindow() {
 		JFrame window = new JFrame();
 
-		window.setTitle("Jeu du connect");
+		window.setTitle("Jeu Connect");
 		//Définit sa taille : 400 pixels de large et 100 pixels de haut
 		window.setSize(400, 100);
 		//Nous demandons maintenant à notre objet de se positionner au centre
@@ -37,7 +39,11 @@ public class Board {
 		window.setVisible(true);
 	}
 	
-	public void iterativResearch() {
-		
+	public void cornerResearch() { // recherche des coins se (numéro 4)
+		for(int i = 0; i < LINE; i++ ) {
+			for (int j = 0; j < ROW; j++) {
+				
+			}
+		}
 	}
 }
