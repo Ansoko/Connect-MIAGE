@@ -1,6 +1,7 @@
 package method1;
 import javax.swing.JFrame;
 import method1.Tile;
+import method1.Tile.marquage;
 
 public class Board {
 	public final int LINE = 5;
@@ -40,9 +41,10 @@ public class Board {
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
 				if(isEmpty(i, j)) {
-					
+					board[i][j].setState(marquage.DeadEnd);
 				}else {
 					
+					}
 				}
 			}
 		}

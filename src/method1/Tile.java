@@ -11,7 +11,7 @@ public class Tile {
 	private marquage state;
 
 	private int num; //numéro de la tuile 
-	/*
+	/* 0 : vide
 	 * 1 : ns,  2 : we
 	 * 3 : ne   4 : se   5 : sw  6 : nw
 	 * 7 : croix
@@ -20,8 +20,8 @@ public class Tile {
 	public Tile () {
 		//appel de la factory ? y
 	}
-	
-	
+
+
 	public void setState(marquage state) {
 		this.state = state;
 	}
