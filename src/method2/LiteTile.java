@@ -18,4 +18,44 @@ public class LiteTile {
 		// TODO Auto-generated constructor stub
 	}
 
+	public boolean isN() {
+		return n;
+	}
+
+	public void setN(boolean n) {
+		this.n = n;
+	}
+
+	public boolean isS() {
+		return s;
+	}
+
+	public void setS(boolean s) {
+		this.s = s;
+	}
+
+	public boolean isE() {
+		return e;
+	}
+
+	public void setE(boolean e) {
+		this.e = e;
+	}
+
+	public boolean isW() {
+		return w;
+	}
+
+	public void setW(boolean w) {
+		this.w = w;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
 }
