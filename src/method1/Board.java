@@ -1,5 +1,4 @@
 package method1;
-import java.util.Arrays;
 import javax.swing.JFrame;
 import method1.Tile;
 
@@ -38,7 +37,21 @@ public class Board {
 	}
 	
 	public void iterativResearch() {
-		
+		for(int i=0; i<board.length; i++) {
+			for(int j=0; j<board[i].length; j++) {
+				if(isEmpty(i, j)) {
+					
+				}else {
+					
+				}
+			}
+		}
+	}
+	
+	private boolean isEmpty(int i, int j) {
+		if (board[i][j]==null)
+			return true;
+		return false;
 	}
 }
 

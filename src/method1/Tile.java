@@ -8,7 +8,6 @@ public class Tile {
 		Connect, 
 		Cross;
 	}
-
 	private marquage state;
 
 	private int num; //numéro de la tuile 
@@ -21,6 +20,12 @@ public class Tile {
 	public Tile () {
 		//appel de la factory ? y
 	}
+	
+	
+	public void setState(marquage state) {
+		this.state = state;
+	}
+
 
 	public boolean isConnected(Tile t, int pos) { //pos : 1=nord, 2=est, 3=sud, 4=ouest
 		switch(pos) {
