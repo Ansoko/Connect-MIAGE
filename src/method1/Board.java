@@ -115,8 +115,26 @@ public class Board {
 							}
 						}
 							//à droite
+						if(board[i][j].getNum()==2 || board[i][j].getNum()==3 || board[i][j].getNum()==4 || board[i][j].getNum()==7) {
+							if(board[i][j+1].getState()==marquage.DeadEnd) {
+								board[i][j].setState(marquage.DeadEnd);
+								mark = true;
+							}
+						}
 							//en bas
+						if(board[i][j].getNum()==1 || board[i][j].getNum()==4 || board[i][j].getNum()==5 || board[i][j].getNum()==7) {
+							if(board[i+1][j].getState()==marquage.DeadEnd) {
+								board[i][j].setState(marquage.DeadEnd);
+								mark = true;
+							}
+						}
 							//à gauche
+						if(board[i][j].getNum()==2 || board[i][j].getNum()==5 || board[i][j].getNum()==6 || board[i][j].getNum()==7) {
+							if(board[i][j-1].getState()==marquage.DeadEnd) {
+								board[i][j].setState(marquage.DeadEnd);
+								mark = true;
+							}
+						}
 					}
 				}
 			}
