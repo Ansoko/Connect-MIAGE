@@ -70,7 +70,7 @@ public class Board {
 		for(int j=1; j<board[LINE-1].length-1; j++) {
 			if(isEmpty(0, j)) {
 				board[0][j].setState(marquage.DeadEnd);
-			}else if(!board[0][j].isConnected(board[LINE-1][j+1], 2)) { 
+			}else if(!board[0][j].isConnected(null, 1) || !board[0][j].isConnected(board[0][j+1], 2) || !board[0][j].isConnected(board[1][j], 3) || !board[0][j].isConnected(board[0][j-1], 4)) { 
 				board[0][j].setState(marquage.DeadEnd);
 			}
 		}
@@ -79,13 +79,22 @@ public class Board {
 		for(int j=1; j<board[LINE-1].length-1; j++) {
 			if(isEmpty(LINE-1, j)) {
 				board[LINE-1][j].setState(marquage.DeadEnd);
-			}else if(!board[LINE-1][j].isConnected(board[LINE-1][j+1], 2)) { //si non connecté à droite
+			}else if(!board[LINE-1][j].isConnected(board[LINE-2][j], 1) || !board[LINE-1][j].isConnected(board[LINE-1][j+1], 2) || !board[LINE-1][j].isConnected(null, 3) || !board[LINE-1][j].isConnected(board[LINE-1][j-1], 4)) { 
 				board[LINE-1][j].setState(marquage.DeadEnd);
 			}
 		}
 
 		//coins
-		if(board[LINE-1][ROW-1].getNum()!=6 && (!board[LINE-1][ROW-1].isConnected(board[LINE-2][ROW-1], 1) || !board[LINE-1][ROW-1].isConnected(board[LINE-1][ROW-2], 4))) { 
+		if(board[0][0].getNum()!=4 || (!board[0][0].isConnected(board[0][1], 2) || !board[0][0].isConnected(board[1][0], 3))) { 
+			board[0][0].setState(marquage.DeadEnd);
+		}
+		if(board[0][ROW-1].getNum()!=5 || (!board[0][ROW-1].isConnected(board[0][ROW-2], 4) || !board[0][ROW-1].isConnected(board[1][ROW-1], 3))) { 
+			board[0][ROW-1].setState(marquage.DeadEnd);
+		}
+		if(board[LINE-1][0].getNum()!=3 || (!board[LINE-1][0].isConnected(board[LINE-2][0], 1) || !board[LINE-1][0].isConnected(board[LINE-1][1], 2))) { 
+			board[LINE-1][0].setState(marquage.DeadEnd);
+		}
+		if(board[LINE-1][ROW-1].getNum()!=6 || (!board[LINE-1][ROW-1].isConnected(board[LINE-2][ROW-1], 1) || !board[LINE-1][ROW-1].isConnected(board[LINE-1][ROW-2], 4))) { 
 			board[LINE-1][ROW-1].setState(marquage.DeadEnd);
 		}
 
