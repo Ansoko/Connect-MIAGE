@@ -1,4 +1,4 @@
-# Connect-MIAGE
+﻿# Connect-MIAGE
 Bonjour à tous,
 
 Le programme est vraiment cool. Toi aussi tu es cool <3
@@ -9,3 +9,5 @@ git commit -m "nom de la modif"
 git push
 
 mettre à jour : git pull
+
+║═╚╔╗╝╬

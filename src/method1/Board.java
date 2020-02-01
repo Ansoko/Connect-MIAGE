@@ -11,13 +11,18 @@ public class Board {
 
 	public Board() { // automatiques avec les constantes
 		board = new Tile[LINE][ROW];
+		for(int i=0; i<board.length; i++) {
+			for(int j=0; j<board[i].length; j++) {
+				board[i][j] = new Tile(); //tuile aléatoire
+			}
+		}
 	}
 
 	public String toString() {
 		String tab="";
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
-				tab = tab + i +"/"+j+" ";
+				tab = tab + board[i][j].toString() + " ";
 			}
 			tab = tab + "\n";
 		}
@@ -32,24 +37,68 @@ public class Board {
 		window.setSize(400, 100);
 		//Nous demandons maintenant à notre objet de se positionner au centre
 		window.setLocationRelativeTo(null);
-		
+
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
 		window.setVisible(true);
 	}
-	
+
 	public void iterativResearch() {
-		for(int i=0; i<board.length; i++) {
-			for(int j=0; j<board[i].length; j++) {
+		
+		//on ne s'occupe pas du marquage des bords dans un premier temps
+		for(int i=1; i<board.length-1; i++) {
+			for(int j=1; j<board[i].length-1; j++) {
 				if(isEmpty(i, j)) {
 					board[i][j].setState(marquage.DeadEnd);
-				}else {
-					
-					}
+				}else if(!board[i][j].isConnected(board[i-1][j], 1) || !board[i][j].isConnected(board[i][j+1], 2) || !board[i][j].isConnected(board[i+1][j], 3)  || !board[i][j].isConnected(board[i][j-1], 4)) { 
+					//on regarde à chaque fois si elle est non connectée à tous ses bords
+					board[i][j].setState(marquage.DeadEnd);
 				}
 			}
+			
+			//marquage colonne collée à gauche
+			if(!board[i][0].isConnected(board[i-1][0], 1) || !board[i][0].isConnected(board[i][1], 2) || !board[i][0].isConnected(board[i+1][0], 3) || !board[i][0].isConnected(null, 4)) { 
+				board[i][0].setState(marquage.DeadEnd);
+			}
+			
+			//colonne collée à droite
+			if(!board[i][board[i].length-1].isConnected(board[i-1][board[i].length-1], 1) || !board[i][board[i].length-1].isConnected(null, 2) || !board[i][board[i].length-1].isConnected(board[i+1][board[i].length-1], 3) || !board[i][board[i].length-1].isConnected(board[i][board[i].length-2], 4)) { 
+				board[i][board[i].length-1].setState(marquage.DeadEnd);
+			}
+		}
+
+		//première ligne
+		for(int j=1; j<board[LINE-1].length-1; j++) {
+			if(isEmpty(0, j)) {
+				board[0][j].setState(marquage.DeadEnd);
+			}else if(!board[0][j].isConnected(board[LINE-1][j+1], 2)) { 
+				board[0][j].setState(marquage.DeadEnd);
+			}
+		}
+
+		//dernière ligne
+		for(int j=1; j<board[LINE-1].length-1; j++) {
+			if(isEmpty(LINE-1, j)) {
+				board[LINE-1][j].setState(marquage.DeadEnd);
+			}else if(!board[LINE-1][j].isConnected(board[LINE-1][j+1], 2)) { //si non connecté à droite
+				board[LINE-1][j].setState(marquage.DeadEnd);
+			}
+		}
+
+		//coins
+		if(board[LINE-1][ROW-1].getNum()!=6 && (!board[LINE-1][ROW-1].isConnected(board[LINE-2][ROW-1], 1) || !board[LINE-1][ROW-1].isConnected(board[LINE-1][ROW-2], 4))) { 
+			board[LINE-1][ROW-1].setState(marquage.DeadEnd);
+		}
+
+		
+		//affichage des marquages
+		for(int i=0; i<board.length; i++) {
+			for(int j=0; j<board[i].length; j++) {
+				System.out.print(board[i][j].getState() + " ");
+			}
+			System.out.println("\n");
 		}
 	}
-	
+
 	private boolean isEmpty(int i, int j) {
 		if (board[i][j]==null)
 			return true;

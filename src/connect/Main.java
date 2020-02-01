@@ -1,6 +1,7 @@
 package connect;
 import method1.*;
-import method2.Board;
+import method1.Board;
+import method2.*;
 
 public class Main {
 
@@ -9,6 +10,8 @@ public class Main {
 
 		Board p1 = new Board();
 		System.out.println(p1.toString());
+		
+		p1.iterativResearch();
 	}
 
 }
