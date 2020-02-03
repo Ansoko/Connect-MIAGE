@@ -2,15 +2,14 @@ package method1;
 
 public class Tile {
 
-	public enum marquage{
+	public enum mark{
 		DeadEnd, 
 		Start, 
 		Connect, 
 		Cross;
 	}
 
-
-	private marquage state;
+	private mark state;
 
 	private int num; //numéro de la tuile correspond à son type
 	/* 0 : vide
@@ -41,11 +40,11 @@ public class Tile {
 		this.num = num;
 	}
 
-	public marquage getState() {
+	public mark getState() {
 		return state;
 	}
 
-	public void setState(marquage state) {
+	public void setState(mark state) {
 		this.state = state;
 	}
 

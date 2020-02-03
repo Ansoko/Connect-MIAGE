@@ -7,6 +7,7 @@ public class LiteTile {
 	private boolean e;
 	private boolean w;
 	
+	private boolean mark;
 	private int num; //numéro de la tuile 
 	/*
 	 * 1 : ns,  2 : we
@@ -14,8 +15,22 @@ public class LiteTile {
 	 * 7 : croix
 	 */
 	
+	public boolean isCornerSE() {
+		if(this.s && this.e && !this.w && !this.n) 
+			return true;
+		return false;
+	}
+	
 	public LiteTile() {
-		// TODO Auto-generated constructor stub
+		this.mark = false;
+	}
+	
+	public boolean isMark() {
+		return mark;
+	}
+
+	public void setMark(boolean mark) {
+		this.mark = mark;
 	}
 
 	public boolean isN() {
