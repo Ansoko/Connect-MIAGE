@@ -2,18 +2,18 @@ package method2;
 import java.util.Arrays;
 import javax.swing.JFrame;
 
-public class Board {
+public class Board2 {
 	public final int LINE = 3;
 	public final int ROW = 5 ;
 	private Circuit longest;
 	private LiteTile board[][];
 
-	public Board() { // automatiques avec les constantes
+	public Board2() { // automatiques avec les constantes
 		board = new LiteTile[LINE][ROW];
 		longest = new Circuit();
 	}
 
-	public void cornerResearch() { // recherche des coins se (numéro 4)
+	public void cornerResearch() { // recherche des coins se (numï¿½ro 4)
 		for(int i = 0; i < LINE; i++ ) {
 			for (int j = 0; j < ROW; j++) {
 				if(this.board[i][j] != null && this.board[i][j].getNum() == 4) { //on trouve un coin se
@@ -23,11 +23,11 @@ public class Board {
 		}
 	}
 	
-	private void followCircuit(int posI, int posJ) { //carrément pas fini
+	private void followCircuit(int posI, int posJ) { //carrï¿½ment pas fini
 		int length = 1;
 		int startI = posI, startJ = posJ;
 		boolean flag = true;
-		if(startJ+1 == LINE) { //si la case à droite n'est pas un mur
+		if(startJ+1 == LINE) { //si la case ï¿½ droite n'est pas un mur
 			flag = false;
 		}
 		posJ +=1;
@@ -35,7 +35,7 @@ public class Board {
 		while(true && posI != startI && posJ !=startJ) {
 			//comparer avec la case suivante
 			
-			// passer posI et posJ à la case suivante
+			// passer posI et posJ ï¿½ la case suivante
 		}
 				
 		if(true && posI != startI && posJ !=startJ )
@@ -60,9 +60,9 @@ public class Board {
 		JFrame window = new JFrame();
 
 		window.setTitle("Jeu Connect");
-		//Définit sa taille : 400 pixels de large et 100 pixels de haut
+		//Dï¿½finit sa taille : 400 pixels de large et 100 pixels de haut
 		window.setSize(400, 100);
-		//Nous demandons maintenant à notre objet de se positionner au centre
+		//Nous demandons maintenant ï¿½ notre objet de se positionner au centre
 		window.setLocationRelativeTo(null);
 		
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
