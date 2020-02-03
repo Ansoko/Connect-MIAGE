@@ -13,24 +13,56 @@ public class Board {
 		longest = new Circuit();
 	}
 
-	public void cornerResearch() { // recherche des coins se (numéro 4)
+	public void cornerResearch() { // recherche des coins se 
 		for(int i = 0; i < LINE; i++ ) {
 			for (int j = 0; j < ROW; j++) {
-				if(this.board[i][j] != null && this.board[i][j].getNum() == 4) { //on trouve un coin se
+				if(this.board[i][j] != null && this.isCornerSE()) { //on trouve un coin se
 					followCircuit(i,j); // on parcourt le circuit
 				}
 			}
 		}
 	}
 	
-	private void followCircuit(int posI, int posJ) { //carrément pas fini
+	private void followCircuit(int posI, int posJ) { 
 		int length = 1;
 		int startI = posI, startJ = posJ;
-		boolean flag = true;
-		if(startJ+1 == LINE) { //si la case à droite n'est pas un mur
-			flag = false;
+		boolean flag = true; //flag devient faux si le circuit est ouvert
+		boolean start = false; // start devient vrai si le circuit est arrivé au début
+	
+		while(flag && !start) {
+			if(this.board[posI][posJ].getE() && startJ+1 < LINE) {//si la case à droite n'est pas un mur
+				posJ +=1; //on va vers la droite
+			}
+			else if(this.board[posI][posJ].getN() && startI-1 >= 0) {//si la case au nord n'est pas un mur
+				posI -=1; //on va vers le haut
+			}
+			else if(this.board[posI][posJ].getW() && startJ-1 >= 0) {//si la case à l'ouest n'est pas un mur
+				posJ -=1; //on va vers le haut
+			}
+			else if(this.board[posI][posJ].getS() && startI+1 > ROW) {//si la case au sud n'est pas un mur
+				posI +=1; //on va vers le bas
+			}
+			else {
+				flag = false;
+			}
+			
+			if(posI==startI && posJ == startJ)
+				start = true;
+			else {
+				if(this.board[posI][posJ].getNum() == 0) {
+					flag = false;
+				}else {
+					//si la case d'avant est marquée ou est le start alors on vient de là
+					//si on vient du nord alors la case doit avoir le nord true ETC
+					//système d'anne so pour les cases
+					//Stocker la case précédentes pour check
+					
+					//si tout est ok
+					length +=1; // on ajoute la case trouvée et on la marque
+					this.board[posI][posJ].setMark(true);
+				}
+			}
 		}
-		posJ +=1;
 		
 		while(true && posI != startI && posJ !=startJ) {
 			//comparer avec la case suivante
@@ -42,9 +74,7 @@ public class Board {
 			//je sais pas
 	}
 	
-	
-	
-	
+
 	public String toString() {
 		String tab="";
 		for(int i=0; i<board.length; i++) {
@@ -56,16 +86,4 @@ public class Board {
 		return tab;
 	}
 
-	private void createWindow() {
-		JFrame window = new JFrame();
-
-		window.setTitle("Jeu Connect");
-		//Définit sa taille : 400 pixels de large et 100 pixels de haut
-		window.setSize(400, 100);
-		//Nous demandons maintenant à notre objet de se positionner au centre
-		window.setLocationRelativeTo(null);
-		
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
-		window.setVisible(true);
-	}
 }
