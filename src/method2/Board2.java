@@ -26,16 +26,24 @@ public class Board2 {
 		int length = 1;
 		int startI = posI, startJ = posJ;
 		boolean flag = true; //flag devient faux si le circuit est ouvert
-		boolean start = false; // start devient vrai si le circuit est arrivé au début
+		boolean start = false; // start devient vrai si le circuit est arrivï¿½ au dï¿½but
 	
 		while(flag && !start) {
+<<<<<<< HEAD
 			if(board[posI][posJ].isE() && startJ+1 < LINE) {//si la case à droite n'est pas un mur
+=======
+			if(this.board[posI][posJ].getE() && startJ+1 < LINE) {//si la case ï¿½ droite n'est pas un mur
+>>>>>>> 675af3a5ff50cd7ae5f2119b443d14fb6610dfa9
 				posJ +=1; //on va vers la droite
 			}
 			else if(this.board[posI][posJ].isN() && startI-1 >= 0) {//si la case au nord n'est pas un mur
 				posI -=1; //on va vers le haut
 			}
+<<<<<<< HEAD
 			else if(this.board[posI][posJ].isW() && startJ-1 >= 0) {//si la case à l'ouest n'est pas un mur
+=======
+			else if(this.board[posI][posJ].getW() && startJ-1 >= 0) {//si la case ï¿½ l'ouest n'est pas un mur
+>>>>>>> 675af3a5ff50cd7ae5f2119b443d14fb6610dfa9
 				posJ -=1; //on va vers le haut
 			}
 			else if(this.board[posI][posJ].isS() && startI+1 > ROW) {//si la case au sud n'est pas un mur
@@ -51,13 +59,13 @@ public class Board2 {
 				if(this.board[posI][posJ] == null) {
 					flag = false;
 				}else {
-					//si la case d'avant est marquée ou est le start alors on vient de là
+					//si la case d'avant est marquï¿½e ou est le start alors on vient de lï¿½
 					//si on vient du nord alors la case doit avoir le nord true ETC
-					//système d'anne so pour les cases
-					//Stocker la case précédentes pour check
+					//systï¿½me d'anne so pour les cases
+					//Stocker la case prï¿½cï¿½dentes pour check
 					
 					//si tout est ok
-					length +=1; // on ajoute la case trouvée et on la marque
+					length +=1; // on ajoute la case trouvï¿½e et on la marque
 					this.board[posI][posJ].setMark(true);
 				}
 			}
@@ -66,7 +74,7 @@ public class Board2 {
 		while(true && posI != startI && posJ !=startJ) {
 			//comparer avec la case suivante
 			
-			// passer posI et posJ à la case suivante
+			// passer posI et posJ ï¿½ la case suivante
 		}
 				
 		if(true && posI != startI && posJ !=startJ )
@@ -84,5 +92,4 @@ public class Board2 {
 		}
 		return tab;
 	}
-
 }

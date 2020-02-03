@@ -12,7 +12,7 @@ public class Board {
 		board = new Tile[LINE][ROW];
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
-				board[i][j] = new Tile(); //tuile aléatoire
+				board[i][j] = new Tile(); //tuile alï¿½atoire
 			}
 		}
 		longest = 0;
@@ -37,23 +37,23 @@ public class Board {
 				if(isEmpty(i, j)) {
 					board[i][j].setState(mark.DeadEnd);
 				}else if(!board[i][j].isConnected(board[i-1][j], 1) || !board[i][j].isConnected(board[i][j+1], 2) || !board[i][j].isConnected(board[i+1][j], 3)  || !board[i][j].isConnected(board[i][j-1], 4)) { 
-					//on regarde à chaque fois si elle est non connectée à tous ses bords
+					//on regarde ï¿½ chaque fois si elle est non connectï¿½e ï¿½ tous ses bords
 					board[i][j].setState(mark.DeadEnd);
 				}
 			}
 
-			//mark colonne collée à gauche
+			//mark colonne collï¿½e ï¿½ gauche
 			if(!board[i][0].isConnected(board[i-1][0], 1) || !board[i][0].isConnected(board[i][1], 2) || !board[i][0].isConnected(board[i+1][0], 3) || !board[i][0].isConnected(null, 4)) { 
 				board[i][0].setState(mark.DeadEnd);
 			}
 
-			//colonne collée à droite
+			//colonne collï¿½e ï¿½ droite
 			if(!board[i][board[i].length-1].isConnected(board[i-1][board[i].length-1], 1) || !board[i][board[i].length-1].isConnected(null, 2) || !board[i][board[i].length-1].isConnected(board[i+1][board[i].length-1], 3) || !board[i][board[i].length-1].isConnected(board[i][board[i].length-2], 4)) { 
 				board[i][board[i].length-1].setState(mark.DeadEnd);
 			}
 		}
 
-		//première ligne
+		//premiï¿½re ligne
 		for(int j=1; j<board[LINE-1].length-1; j++) {
 			if(isEmpty(0, j)) {
 				board[0][j].setState(mark.DeadEnd);
@@ -62,7 +62,7 @@ public class Board {
 			}
 		}
 
-		//dernière ligne
+		//derniï¿½re ligne
 		for(int j=1; j<board[LINE-1].length-1; j++) {
 			if(isEmpty(LINE-1, j)) {
 				board[LINE-1][j].setState(mark.DeadEnd);
@@ -86,14 +86,14 @@ public class Board {
 		}
 
 
-		//on reparcourt le tableau en s'arrêtant que sur les tuilles sans mark
+		//on reparcourt le tableau en s'arrï¿½tant que sur les tuilles sans mark
 		boolean findMark = true;
 		while(findMark) {
 			findMark = false;
 			for(int i=0; i<board.length; i++) {
 				for(int j=0; j<board[i].length; j++) {
 					if(board[i][j].getState()==null) {
-						//on regarde ses voisins de branche, si ils sont marqué alors on marque aussi
+						//on regarde ses voisins de branche, si ils sont marquï¿½ alors on marque aussi
 						//en haut
 						if(board[i][j].getNum()==1 || board[i][j].getNum()==3 || board[i][j].getNum()==6 || board[i][j].getNum()==7) {
 							if(board[i-1][j].getState()==mark.DeadEnd) {
@@ -101,7 +101,7 @@ public class Board {
 								findMark = true;
 							}
 						}
-						//à droite
+						//ï¿½ droite
 						if(board[i][j].getNum()==2 || board[i][j].getNum()==3 || board[i][j].getNum()==4 || board[i][j].getNum()==7) {
 							if(board[i][j+1].getState()==mark.DeadEnd) {
 								board[i][j].setState(mark.DeadEnd);
@@ -115,7 +115,7 @@ public class Board {
 								findMark = true;
 							}
 						}
-						//à gauche
+						//ï¿½ gauche
 						if(board[i][j].getNum()==2 || board[i][j].getNum()==5 || board[i][j].getNum()==6 || board[i][j].getNum()==7) {
 							if(board[i][j-1].getState()==mark.DeadEnd) {
 								board[i][j].setState(mark.DeadEnd);
@@ -128,7 +128,7 @@ public class Board {
 		}
 
 
-		//il ne reste plus que les circuits qui ne sont pas marqués
+		//il ne reste plus que les circuits qui ne sont pas marquï¿½s
 		int count = 0;
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
