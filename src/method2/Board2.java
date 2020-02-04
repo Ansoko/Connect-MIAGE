@@ -29,21 +29,13 @@ public class Board2 {
 		boolean start = false; // start devient vrai si le circuit est arrivï¿½ au dï¿½but
 	
 		while(flag && !start) {
-<<<<<<< HEAD
 			if(board[posI][posJ].isE() && startJ+1 < LINE) {//si la case à droite n'est pas un mur
-=======
-			if(this.board[posI][posJ].getE() && startJ+1 < LINE) {//si la case ï¿½ droite n'est pas un mur
->>>>>>> 675af3a5ff50cd7ae5f2119b443d14fb6610dfa9
 				posJ +=1; //on va vers la droite
 			}
 			else if(this.board[posI][posJ].isN() && startI-1 >= 0) {//si la case au nord n'est pas un mur
 				posI -=1; //on va vers le haut
 			}
-<<<<<<< HEAD
 			else if(this.board[posI][posJ].isW() && startJ-1 >= 0) {//si la case à l'ouest n'est pas un mur
-=======
-			else if(this.board[posI][posJ].getW() && startJ-1 >= 0) {//si la case ï¿½ l'ouest n'est pas un mur
->>>>>>> 675af3a5ff50cd7ae5f2119b443d14fb6610dfa9
 				posJ -=1; //on va vers le haut
 			}
 			else if(this.board[posI][posJ].isS() && startI+1 > ROW) {//si la case au sud n'est pas un mur
