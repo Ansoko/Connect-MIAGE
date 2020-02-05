@@ -3,7 +3,7 @@ import method1.Tile.mark;
 
 public class Board {
 	public final int LINE = 5;
-	public final int ROW = 5 ;
+	public final int ROW = 5;
 	private Tile board[][];
 	private Circuit longestCircuit;
 	private int longest;

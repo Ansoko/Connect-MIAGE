@@ -17,6 +17,7 @@ public class Main {
 		p1.iterativResearch();		
 		Graphic window = new Graphic();
 		
+		
 	}
 
 }

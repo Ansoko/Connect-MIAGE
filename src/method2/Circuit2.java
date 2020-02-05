@@ -1,11 +1,11 @@
 package method2;
 
-public class Circuit {
+public class Circuit2 {
 	private int length;
 	private int posI;
 	private int posJ;
 	 
-	public Circuit() {
+	public Circuit2() {
 		this.length = 0;
 	}
 
