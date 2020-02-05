@@ -29,8 +29,9 @@ public class Board2 {
 		boolean start = false; // start devient vrai si le circuit est arriv� au d�but
 	
 		while(flag && !start) {
-		
+
 			if(board[posI][posJ].isE() && startJ+1 < LINE) {//si la case � droite n'est pas un mur
+
 				posJ +=1; //on va vers la droite
 			}
 			else if(this.board[posI][posJ].isN() && startI-1 >= 0) {//si la case au nord n'est pas un mur
@@ -38,6 +39,7 @@ public class Board2 {
 			}
 
 			else if(this.board[posI][posJ].isW() && startJ-1 >= 0) {//si la case � l'ouest n'est pas un mur
+
 				posJ -=1; //on va vers le haut
 			}
 			else if(this.board[posI][posJ].isS() && startI+1 > ROW) {//si la case au sud n'est pas un mur
