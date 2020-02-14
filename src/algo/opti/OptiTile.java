@@ -1,11 +1,11 @@
 package algo.opti;
 
-public class Tile {
+public class OptiTile {
 	private int x;
 	private int y;
 	private Type type;
 	
-	public Tile(int x, int y, Type type) {
+	public OptiTile(int x, int y, Type type) {
 		this.x = x;
 		this.y = y;
 		this.type = type;

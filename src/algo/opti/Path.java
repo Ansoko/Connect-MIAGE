@@ -8,22 +8,23 @@ import connect.*;
 
 public class Path {
 	private boolean cycle;
-	private List<Tile> tiles;
+	private List<OptiTile> optiTiles;
 	
-	public Path(Tile[][] board, Tile starter) {
+	public Path(OptiTile[][] grid, OptiTile starter) {
 		this.cycle = true;
-		this.tiles = new ArrayList<>();
-		this.tiles.add(starter);
-		this.fillPath(board, starter.getX(), starter.getY());
+		this.optiTiles = new ArrayList<>();
+		this.optiTiles.add(starter);
+		this.fillPath(grid, starter.getX(), starter.getY());
+		System.out.println("J'ai créé un trajet");
 	}
 	
 	public Path() {
 		this.cycle = true;
-		this.tiles = new ArrayList<>();
+		this.optiTiles = new ArrayList<>();
 	}
 	
-	public List<Tile> getPath(){
-		return this.tiles;
+	public List<OptiTile> getPath(){
+		return this.optiTiles;
 	}
 	
 	public void setCycle(boolean cycle) {
@@ -34,11 +35,11 @@ public class Path {
 		return cycle;
 	}
 	
-	//Retourne vrai si la case n'est pas en dehors du board
-	private boolean checkIfTileExists(Tile[][] board, int x, int y) { 
+	//Retourne vrai si la case n'est pas en dehors du grid
+	private boolean checkIfTileExists(OptiTile[][] grid, int x, int y) { 
 		boolean exist = true;
 		try {
-			Tile t = board[x][y];
+			OptiTile t = grid[x][y];
 		}catch (Exception e){
 			exist = false;
 		}
@@ -48,6 +49,8 @@ public class Path {
 	//Retourne vrai si la direction est dans le tableau
 		private boolean checkIfDirectionExists(Direction[] t, Direction dir) { 
 			for(Direction d : t) {
+				System.out.println("check if dir exist :" + d);
+			//for(int i = 0; i< t.length; i++) {
 				if(dir == d) {
 					return true;
 				}
@@ -56,19 +59,22 @@ public class Path {
 		}
 	
 	//Retourne vrai si le trajet possède une tuile donnée
-	public boolean ownsTile(Tile t) {
-		return tiles.contains(t);
+	public boolean ownsTile(OptiTile t) {
+		return optiTiles.contains(t);
 	}
 	
 	//remplit le trajet même s'il est pas fermé
-	private void fillPath(Tile[][] board, int i, int j) {
-		for(Direction dir : Main.ConnectionsMap.get(board[i][j].getType())) {
+	private void fillPath(OptiTile[][] grid, int i, int j) {
+		System.out.println(i+" / "+j);
+		for(Direction dir : Main.ConnectionsMap.get(grid[i][j].getType())) {
 			switch(dir) {
 				case Top:
-					if (this.checkIfTileExists(board,i,j-1) && checkIfDirectionExists(Main.ConnectionsMap.get(board[i+1][j].getType()),Direction.Left)) {
-						if (!this.ownsTile(board[i][j-1])) {
-							this.getPath().add(board[i][j-1]);
-							this.fillPath(board, i, j-1);
+					System.out.println("Top");
+					if (this.checkIfTileExists(grid,i,j-1) && checkIfDirectionExists(Main.ConnectionsMap.get(grid[i][j-1].getType()),Direction.Down)) {
+						if (!this.ownsTile(grid[i][j-1])) {
+							this.getPath().add(grid[i][j-1]);
+							System.out.println("Top c'est bon");
+							this.fillPath(grid, i, j-1);
 						}
 					} else {
 						this.setCycle(false);
@@ -76,30 +82,33 @@ public class Path {
 					break;
 				
 				case Down:
-					if (this.checkIfTileExists(board,i,j+1) && checkIfDirectionExists(Main.ConnectionsMap.get(board[i][j+1].getType()),Direction.Top)) {
-						if (!this.ownsTile(board[i][j+1])) {
-								this.getPath().add(board[i][j+1]);
-								this.fillPath(board, i, j+1);
+					System.out.println("Down");
+					if (this.checkIfTileExists(grid,i,j+1) && checkIfDirectionExists(Main.ConnectionsMap.get(grid[i][j+1].getType()),Direction.Top)) {
+						if (!this.ownsTile(grid[i][j+1])) {
+								this.getPath().add(grid[i][j+1]);
+								this.fillPath(grid, i, j+1);
 							}
 						} else {
 							this.setCycle(false);
 						}
 					break;
 				case Left:
-					if (this.checkIfTileExists(board,i-1,j) && checkIfDirectionExists(Main.ConnectionsMap.get(board[i-1][j].getType()),Direction.Right)) {
-						if (!this.ownsTile(board[i-1][j])) {
-							this.getPath().add(board[i-1][j]);
-							this.fillPath(board, i-1, j);
+					System.out.println("Left");
+					if (this.checkIfTileExists(grid,i-1,j) && checkIfDirectionExists(Main.ConnectionsMap.get(grid[i-1][j].getType()),Direction.Right)) {
+						if (!this.ownsTile(grid[i-1][j])) {
+							this.getPath().add(grid[i-1][j]);
+							this.fillPath(grid, i-1, j);
 						}
 					} else {
 						this.setCycle(false);
 					}
 					break;
 				case Right:
-					if (this.checkIfTileExists(board,i+1,j) && checkIfDirectionExists(Main.ConnectionsMap.get(board[i+1][j].getType()),Direction.Left)) {
-						if (!this.ownsTile(board[i+1][j])) {
-							this.getPath().add(board[i+1][j]);
-							this.fillPath(board, i+1, j);
+					System.out.println("Right");
+					if (this.checkIfTileExists(grid,i+1,j) && checkIfDirectionExists(Main.ConnectionsMap.get(grid[i+1][j].getType()),Direction.Left)) {
+						if (!this.ownsTile(grid[i+1][j])) {
+							this.getPath().add(grid[i+1][j]);
+							this.fillPath(grid, i+1, j);
 						}
 					} else {
 						this.setCycle(false);

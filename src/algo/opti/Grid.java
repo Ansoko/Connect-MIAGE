@@ -1,25 +1,31 @@
 package algo.opti;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Iterator;
 
-public class Board {
-	
-	private Tile [][] tab;
+public class Grid {
+	private OptiTile [][] tab;
 	private List <Path> paths;
 	private int maxLength;
 	private Path longest;
 	
 	
-	public Board(int i, int j) {
-		this.tab = new Tile[i][j];
+	public Grid(int i, int j) {
+		this.tab = new OptiTile[i][j];
 		this.paths = new ArrayList<Path>();
 		this.maxLength = 0;
 		this.longest = new Path();
 	}
 	
+	public OptiTile[][] getGrid(){
+		return this.tab;
+	}
+	
+	public void setGrid(int i, int j, OptiTile t){
+		this.tab[i][j] = t;
+	}
+	
 	//cherche si la tuile est déjà dans un trajet existant
-	public boolean checkPaths(Tile t) {
+	public boolean checkPaths(OptiTile t) {
 		for(Path p : paths) {
 			if(p.ownsTile(t))
 				return true;
@@ -28,10 +34,11 @@ public class Board {
 	}
 	
 	//crée des trajets
-	public void go() {
+	public void launcher() {
 		for (int i = 0; i < tab.length; i++) {
 			for (int j = 0; j < tab[0].length; j++) {
-				if (this.tab[i][j].getType() != Type.Empty && checkPaths(tab[i][j])) {
+				if (this.tab[i][j].getType() != Type.Empty && !checkPaths(tab[i][j])) {
+					System.out.println("Je suis passé par là"+i+" "+j);
 					paths.add(new Path(this.tab, this.tab[i][j]));
 				}
 			}
