@@ -49,9 +49,9 @@ public class Path {
 	//Retourne vrai si la direction est dans le tableau
 		private boolean checkIfDirectionExists(Direction[] t, Direction dir) { 
 			for(Direction d : t) {
-				System.out.println("check if dir exist :" + d);
-			//for(int i = 0; i< t.length; i++) {
+				System.out.println("check if dir exist : " + d);
 				if(dir == d) {
+					System.out.println(d+ " existe");
 					return true;
 				}
 			}
@@ -73,11 +73,12 @@ public class Path {
 					if (this.checkIfTileExists(grid,i,j-1) && checkIfDirectionExists(Main.ConnectionsMap.get(grid[i][j-1].getType()),Direction.Down)) {
 						if (!this.ownsTile(grid[i][j-1])) {
 							this.getPath().add(grid[i][j-1]);
-							System.out.println("Top c'est bon");
+							System.out.println("Top est ajouté");
 							this.fillPath(grid, i, j-1);
 						}
 					} else {
 						this.setCycle(false);
+						System.out.println("Circuit ouvert");
 					}
 					break;
 				
@@ -86,10 +87,12 @@ public class Path {
 					if (this.checkIfTileExists(grid,i,j+1) && checkIfDirectionExists(Main.ConnectionsMap.get(grid[i][j+1].getType()),Direction.Top)) {
 						if (!this.ownsTile(grid[i][j+1])) {
 								this.getPath().add(grid[i][j+1]);
+								System.out.println("Down est ajouté");
 								this.fillPath(grid, i, j+1);
 							}
 						} else {
 							this.setCycle(false);
+							System.out.println("Circuit ouvert");
 						}
 					break;
 				case Left:
@@ -97,10 +100,12 @@ public class Path {
 					if (this.checkIfTileExists(grid,i-1,j) && checkIfDirectionExists(Main.ConnectionsMap.get(grid[i-1][j].getType()),Direction.Right)) {
 						if (!this.ownsTile(grid[i-1][j])) {
 							this.getPath().add(grid[i-1][j]);
+							System.out.println("Left est ajouté");
 							this.fillPath(grid, i-1, j);
 						}
 					} else {
 						this.setCycle(false);
+						System.out.println("Circuit ouvert");
 					}
 					break;
 				case Right:
@@ -108,10 +113,12 @@ public class Path {
 					if (this.checkIfTileExists(grid,i+1,j) && checkIfDirectionExists(Main.ConnectionsMap.get(grid[i+1][j].getType()),Direction.Left)) {
 						if (!this.ownsTile(grid[i+1][j])) {
 							this.getPath().add(grid[i+1][j]);
+							System.out.println("Right est ajouté");
 							this.fillPath(grid, i+1, j);
 						}
 					} else {
 						this.setCycle(false);
+						System.out.println("Circuit ouvert");
 					}
 					break;
 			}
