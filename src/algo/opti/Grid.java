@@ -24,6 +24,15 @@ public class Grid {
 		this.tab[i][j] = t;
 	}
 	
+	public void showTab() {
+		for (int i = 0; i < tab.length; i++) {
+			for (int j = 0; j < tab.length; j++) {
+				System.out.print(this.tab[i][j].getType() + " ");
+			}
+			System.out.println();
+		}
+	}
+	
 	//cherche si la tuile est déjà dans un trajet existant
 	public boolean checkPaths(OptiTile t) {
 		for(Path p : paths) {
@@ -50,13 +59,19 @@ public class Grid {
 		Path p1 = new Path();
 		int max = 0;
 		for(Path p : this.paths ) {
-			if(p.getCycle() && p.getPath().size() >= max) {
-				max = p.getPath().size();
+			int length = p.getPath().size()+p.nbCross();
+			System.out.println(length);
+			if(p.getCycle() && length >= max) {
+				max = length;
 				p1 = p;
 			}
 		}
 		this.maxLength = max;
 		this.longest = p1;
+	}
+	
+	public void getResult() {
+		System.out.println("Le trajet le plus long est de "+this.maxLength+" traits.");
 	}
 
 }
