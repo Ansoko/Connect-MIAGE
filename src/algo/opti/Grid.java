@@ -59,11 +59,13 @@ public class Grid {
 		Path p1 = new Path();
 		int max = 0;
 		for(Path p : this.paths ) {
-			int length = p.getPath().size()+p.nbCross();
-			System.out.println(length);
-			if(p.getCycle() && length >= max) {
-				max = length;
-				p1 = p;
+			if(p.getCycle()) {
+				int length = p.getPath().size()+p.nbCross();
+				System.out.println(length);
+				if(length >= max) {
+					max = length;
+					p1 = p;
+				}
 			}
 		}
 		this.maxLength = max;
@@ -71,7 +73,10 @@ public class Grid {
 	}
 	
 	public void getResult() {
-		System.out.println("Le trajet le plus long est de "+this.maxLength+" traits.");
+		if(this.maxLength != 0)
+			System.out.println("Le circuit fermé le plus long est de "+this.maxLength+" traits.");
+		else
+			System.out.println("Il n'y a aucun circuit fermé.");
 	}
 
 }

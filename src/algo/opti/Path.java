@@ -15,7 +15,7 @@ public class Path {
 		this.optiTiles = new ArrayList<>();
 		this.optiTiles.add(starter);
 		this.fillPath(grid, starter.getX(), starter.getY());
-		System.out.println("J'ai créé un trajet");
+		System.out.println("J'ai créé un trajet de valeur "+ this.cycle);
 	}
 	
 	public Path() {

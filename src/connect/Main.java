@@ -24,26 +24,8 @@ public class Main {
 		
 	public static void main(String[] args) {
 		
-		//TESTS
-		Grid gridTest = new Grid(3,3);
-		gridTest.setGrid(0, 0, new OptiTile(0, 0, Type.TopLeft));
-		gridTest.setGrid(0, 1, new OptiTile(0, 1, Type.Horizontal));
-		gridTest.setGrid(0, 2, new OptiTile(0, 2, Type.TopRight));
+		callTestAlgoOpti();
 		
-		gridTest.setGrid(1, 0, new OptiTile(1, 0, Type.Vertical));
-		gridTest.setGrid(1, 1, new OptiTile(1, 1, Type.Cross));
-		gridTest.setGrid(1, 2, new OptiTile(1, 2, Type.Vertical));
-		
-		gridTest.setGrid(2, 0, new OptiTile(2, 0, Type.DownLeft));
-		gridTest.setGrid(2, 1, new OptiTile(2, 1, Type.Horizontal));
-		gridTest.setGrid(2, 2, new OptiTile(2, 2, Type.DownRight));
-		gridTest.showTab();
-		System.out.println();
-		gridTest.launcher();
-		gridTest.lookForLongest();
-		gridTest.getResult();
-		
-		//FIN TESTS
 		/*
 		Board p1 = new Board();
 		System.out.println(p1.toString());
@@ -51,6 +33,36 @@ public class Main {
 		p1.iterativResearch();		
 		Graphic window = new Graphic();
 		*/
+	}
+	
+	public static void callTestAlgoOpti() {
+		//TESTS
+				Grid gridTest = new Grid(4,4);
+				gridTest.setGrid(0, 0, new OptiTile(0, 0, Type.Empty));
+				gridTest.setGrid(0, 1, new OptiTile(0, 1, Type.TopLeft));
+				gridTest.setGrid(0, 2, new OptiTile(0, 2, Type.Horizontal));
+				gridTest.setGrid(0, 3, new OptiTile(0, 3, Type.TopRight));
+				
+				gridTest.setGrid(1, 0, new OptiTile(1, 0, Type.TopLeft));
+				gridTest.setGrid(1, 1, new OptiTile(1, 1, Type.Cross));
+				gridTest.setGrid(1, 2, new OptiTile(1, 2, Type.TopRight));
+				gridTest.setGrid(1, 3, new OptiTile(1, 3, Type.Vertical));
+				
+				gridTest.setGrid(2, 0, new OptiTile(2, 0, Type.DownLeft));
+				gridTest.setGrid(2, 1, new OptiTile(2, 1, Type.Cross));
+				gridTest.setGrid(2, 2, new OptiTile(2, 2, Type.DownRight));
+				gridTest.setGrid(2, 3, new OptiTile(2, 3, Type.Vertical));
+				
+				gridTest.setGrid(3, 0, new OptiTile(3, 0, Type.Empty));
+				gridTest.setGrid(3, 1, new OptiTile(3, 1, Type.DownLeft));
+				gridTest.setGrid(3, 2, new OptiTile(3, 2, Type.Horizontal));
+				gridTest.setGrid(3, 3, new OptiTile(3, 3, Type.DownRight));
+				
+				gridTest.showTab();
+				System.out.println();
+				gridTest.launcher();
+				gridTest.lookForLongest();
+				gridTest.getResult();
 	}
 
 }
