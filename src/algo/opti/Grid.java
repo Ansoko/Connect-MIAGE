@@ -1,12 +1,27 @@
 package algo.opti;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Grid {
 	private OptiTile [][] tab;
 	private List <Path> paths;
 	private int maxLength;
 	private Path longest;
+	
+	public static final Map<Type, String> DrawMap ;
+	static {
+		DrawMap = new HashMap<>();
+		DrawMap.put(Type.Empty, " ");
+		DrawMap.put(Type.DownLeft, "╚");
+		DrawMap.put(Type.DownRight, "╝");
+		DrawMap.put(Type.TopLeft, "╔");
+		DrawMap.put(Type.TopRight, "╗");
+		DrawMap.put(Type.Vertical, "║");
+		DrawMap.put(Type.Horizontal, "═");
+		DrawMap.put(Type.Cross, "╬");
+	}
 	
 	
 	public Grid(int i, int j) {
@@ -27,13 +42,13 @@ public class Grid {
 	public void showTab() {
 		for (int i = 0; i < tab.length; i++) {
 			for (int j = 0; j < tab.length; j++) {
-				System.out.print(this.tab[i][j].getType() + " ");
+				System.out.print(Grid.DrawMap.get(this.tab[i][j].getType()));
 			}
 			System.out.println();
 		}
 	}
 	
-	//cherche si la tuile est d�j� dans un trajet existant
+	//cherche si la tuile est déjà dans un trajet existant
 	public boolean checkPaths(OptiTile t) {
 		for(Path p : paths) {
 			if(p.ownsTile(t))
@@ -42,12 +57,12 @@ public class Grid {
 		return false;
 	}
 	
-	//cr�e des trajets
+	//crée des trajets
 	public void launcher() {
 		for (int i = 0; i < tab.length; i++) {
 			for (int j = 0; j < tab[0].length; j++) {
 				if (this.tab[i][j].getType() != Type.Empty && !checkPaths(tab[i][j])) {
-					System.out.println("Je suis pass� par l�"+i+" "+j);
+					System.out.println("Je suis passé par là"+i+" "+j);
 					paths.add(new Path(this.tab, this.tab[i][j]));
 				}
 			}
@@ -74,9 +89,9 @@ public class Grid {
 	
 	public void getResult() {
 		if(this.maxLength != 0)
-			System.out.println("Le circuit ferm� le plus long est de "+this.maxLength+" traits.");
+			System.out.println("Le circuit fermé le plus long est de "+this.maxLength+" traits.");
 		else
-			System.out.println("Il n'y a aucun circuit ferm�.");
+			System.out.println("Il n'y a aucun circuit fermé.");
 	}
 
 }
