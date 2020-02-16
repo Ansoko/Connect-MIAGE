@@ -1,4 +1,6 @@
 package algo.opti;
+//import java.util.logging.Logger;
+//import java.util.logging.Level;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +12,15 @@ public class Path {
 	private boolean cycle;
 	private List<OptiTile> optiTiles;
 	
+	//private static final Logger LOGGER = Logger.getLogger( Path.class.getName() );
+	
 	public Path(OptiTile[][] grid, OptiTile starter) {
 		this.cycle = true;
 		this.optiTiles = new ArrayList<>();
 		this.optiTiles.add(starter);
 		this.fillPath(grid, starter.getX(), starter.getY());
 		System.out.println("J'ai créé un trajet de valeur "+ this.cycle);
+		//LOGGER.log(Level.FINE, "J'ai créé un trajet de valeur {0} ", this.cycle);
 	}
 	
 	public Path() {
@@ -47,12 +52,12 @@ public class Path {
 	}
 	
 	//Retourne vrai si la case n'est pas en dehors du grid
-	private boolean checkIfTileExists(OptiTile[][] grid, int x, int y) { 
+	private boolean checkIfTileExists(OptiTile[][] grid, int coordX, int coordY) { 
 		boolean exist = true;
 		try {
-			OptiTile t = grid[x][y];
+			OptiTile t = grid[coordX][coordY];
 		}catch (Exception e){
-			System.out.println("erreur ?"+x +" "+y);
+			System.out.println("erreur ?"+coordX +" "+coordY);
 			exist = false;
 		}
 		return exist;
