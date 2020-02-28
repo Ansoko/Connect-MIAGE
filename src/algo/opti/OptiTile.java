@@ -22,5 +22,4 @@ public class OptiTile {
 	public Type getType() {
 		return this.type;
 	}
-
 }

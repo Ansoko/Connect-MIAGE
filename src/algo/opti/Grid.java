@@ -31,6 +31,45 @@ public class Grid {
 		this.longest = new Path();
 	}
 	
+	public void createAleaGrid() {
+		for (int i = 0; i < tab.length; i++) {
+			for (int j = 0; j < tab.length; j++) {
+				if(Math.random()*100 <= 75) {//test si on pose une tuile ou non à 75%
+					int alea = 1 + (int)(Math.random() * 7);
+					switch (alea){
+					case(1):
+						setGrid(i, j, new OptiTile(i, j, Type.DownLeft));
+						break;
+					case(2):
+						setGrid(i, j, new OptiTile(i, j, Type.DownRight));
+						break;
+					case(3):
+						setGrid(i, j, new OptiTile(i, j, Type.TopLeft));
+						break;
+					case(4):
+						setGrid(i, j, new OptiTile(i, j, Type.TopRight));
+						break;
+					case(5):
+						setGrid(i, j, new OptiTile(i, j, Type.Vertical));
+						break;
+					case(6):
+						setGrid(i, j, new OptiTile(i, j, Type.Horizontal));
+						break;
+					case(7):
+						setGrid(i, j, new OptiTile(i, j, Type.Cross));
+						break;
+					default : 
+						System.out.println("Erreur remplissage grille");
+						break;
+					}
+				}else {
+					setGrid(i, j, new OptiTile(i, j, Type.Empty));
+				}
+			}
+		}
+		showTab();
+	}
+	
 	public OptiTile[][] getGrid(){
 		return this.tab;
 	}
