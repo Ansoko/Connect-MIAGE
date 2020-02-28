@@ -101,7 +101,6 @@ public class Grid {
 		for (int i = 0; i < tab.length; i++) {
 			for (int j = 0; j < tab[0].length; j++) {
 				if (this.tab[i][j].getType() != Type.Empty && !checkPaths(tab[i][j])) {
-					System.out.println("Je suis passé par là"+i+" "+j);
 					paths.add(new Path(this.tab, this.tab[i][j]));
 				}
 			}
@@ -131,6 +130,10 @@ public class Grid {
 			System.out.println("Le circuit fermé le plus long est de "+this.maxLength+" traits.");
 		else
 			System.out.println("Il n'y a aucun circuit fermé.");
+	}
+	
+	public int getMaxLength() {
+	    return maxLength;
 	}
 
 }
