@@ -87,7 +87,7 @@ public class Grid {
 		}
 	}
 	
-	//cherche si la tuile est déjà dans un trajet existant
+	//cherche si la tuile est déjà dans un trajet existant obsolète ? ??
 	public boolean checkPaths(OptiTile t) {
 		for(Path p : paths) {
 			if(p.ownsTile(t))
@@ -100,7 +100,7 @@ public class Grid {
 	public void launcher() {
 		for (int i = 0; i < tab.length; i++) {
 			for (int j = 0; j < tab[0].length; j++) {
-				if (this.tab[i][j].getType() != Type.Empty && !checkPaths(tab[i][j])) {
+				if (this.tab[i][j].getType() != Type.Empty && !tab[i][j].getMark()) {//!checkPaths(tab[i][j])
 					paths.add(new Path(this.tab, this.tab[i][j]));
 				}
 			}
@@ -113,7 +113,7 @@ public class Grid {
 		int max = 0;
 		for(Path p : this.paths ) {
 			if(p.getCycle()) {
-				int length = p.getPath().size()+p.nbCross();
+			    int length = p.getPath().size()+p.nbCross();
 				System.out.println(length);
 				if(length >= max) {
 					max = length;

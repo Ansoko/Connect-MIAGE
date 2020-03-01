@@ -12,14 +12,15 @@ public class Path {
 	private boolean cycle;
 	private List<OptiTile> optiTiles;
 	
-	//private static final Logger LOGGER = Logger.getLogger( Path.class.getName() );
 	
 	public Path(OptiTile[][] grid, OptiTile starter) {
 		this.cycle = true;
 		this.optiTiles = new ArrayList<>();
 		this.optiTiles.add(starter);
+		starter.setMark(true);
 		this.fillPath(grid, starter.getX(), starter.getY());
-		System.out.println("J'ai créé un trajet de valeur "+ this.cycle);
+		if(this.cycle)
+		    System.out.println("J'ai créé un trajet de valeur "+ this.cycle);
 	}
 	
 	public Path() {
@@ -76,62 +77,66 @@ public class Path {
 			return false;
 		}
 	
-	//Retourne vrai si le trajet poss�de une tuile donn�e
+	//Retourne vrai si le trajet possède une tuile donnée // obsolète ?
 	public boolean ownsTile(OptiTile t) {
-		return optiTiles.contains(t);
+		return optiTiles.contains(t); // complecité de la fonction contain ?
 	}
 	
-	//remplit le trajet m�me s'il est pas ferm�
+	//remplit le trajet même s'il est pas fermé
 	private void fillPath(OptiTile[][] grid, int i, int j) {
 		for(Direction dir : Main.ConnectionsMap.get(grid[i][j].getType())) {
 			switch(dir) {
 				case Top:
 					if (this.checkIfTileExists(grid,i-1,j) && checkIfDirectionExists(Main.ConnectionsMap.get(grid[i-1][j].getType()),Direction.Down)) {
-						if (!this.ownsTile(grid[i-1][j])) {
+						if (!grid[i-1][j].getMark()) { //!this.ownsTile(grid[i-1][j])
+						    grid[i-1][j].setMark(true);
 							this.getPath().add(grid[i-1][j]);
 							this.fillPath(grid, i-1, j);
 						}
 					} else {
 						if(this.getCycle() != false)
 							this.setCycle(false);
-						System.out.println("Circuit ouvert Top");
+						//System.out.println("Circuit ouvert Top");
 					}
 					break;
 				
 				case Down:
 					if (this.checkIfTileExists(grid,i+1,j) && checkIfDirectionExists(Main.ConnectionsMap.get(grid[i+1][j].getType()),Direction.Top)) {
-						if (!this.ownsTile(grid[i+1][j])) {
+						if (!grid[i+1][j].getMark()) { //!this.ownsTile(grid[i+1][j])
+	                        grid[i+1][j].setMark(true);
 							this.getPath().add(grid[i+1][j]);
 							this.fillPath(grid, i+1, j);
 							}
 					} else {
 						if(this.getCycle() != false)
 							this.setCycle(false);
-						System.out.println("Circuit ouvert Down");
+						//System.out.println("Circuit ouvert Down");
 					}
 					break;
 				case Left:
 					if (this.checkIfTileExists(grid,i,j-1) && checkIfDirectionExists(Main.ConnectionsMap.get(grid[i][j-1].getType()),Direction.Right)) {
-						if (!this.ownsTile(grid[i][j-1])) {
+						if (!grid[i][j-1].getMark()) { //!this.ownsTile(grid[i][j-1])
+	                        grid[i][j-1].setMark(true);
 							this.getPath().add(grid[i][j-1]);
 							this.fillPath(grid, i, j-1);
 						}
 					} else {
 						if(this.getCycle() != false)
 							this.setCycle(false);
-						System.out.println("Circuit ouvert Left");
+						//System.out.println("Circuit ouvert Left");
 					}
 					break;
 				case Right:
 					if (this.checkIfTileExists(grid,i,j+1) && checkIfDirectionExists(Main.ConnectionsMap.get(grid[i][j+1].getType()),Direction.Left)) {
-						if (!this.ownsTile(grid[i][j+1])) {
+						if (!grid[i][j+1].getMark()) { //!this.ownsTile(grid[i][j+1])
+                            grid[i][j+1].setMark(true);
 							this.getPath().add(grid[i][j+1]);
 							this.fillPath(grid, i, j+1);
 						}
 					} else {
 						if(this.getCycle() != false)
 							this.setCycle(false);
-						System.out.println("Circuit ouvert Right");
+						//System.out.println("Circuit ouvert Right");
 					}
 					break;
 			}
