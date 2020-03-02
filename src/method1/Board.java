@@ -1,18 +1,33 @@
 package method1;
+import java.util.HashMap;
+import java.util.Map;
+
 import method1.Tile.mark;
 
 public class Board {
 	public final int LINE = 5;
 	public final int ROW = 5;
 	private Tile board[][];
-	private Circuit longestCircuit;
 	private int longest;
+	
+	public static final Map<Integer, String> DrawMap ;
+	static {
+		DrawMap = new HashMap<>();
+		DrawMap.put(0, " ");
+		DrawMap.put(3, "╚");
+		DrawMap.put(6, "╝");
+		DrawMap.put(4, "╔");
+		DrawMap.put(5, "╗");
+		DrawMap.put(1, "║");
+		DrawMap.put(2, "═");
+		DrawMap.put(7, "╬");
+	}
 
 	public Board() { // automatiques avec les constantes
 		board = new Tile[LINE][ROW];
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
-				board[i][j] = new Tile(); //tuile al�atoire
+				board[i][j] = new Tile(); //tuile al���atoire
 			}
 		}
 		longest = 0;
@@ -37,23 +52,23 @@ public class Board {
 				if(isEmpty(i, j)) {
 					board[i][j].setState(mark.DeadEnd);
 				}else if(!board[i][j].isConnected(board[i-1][j], 1) || !board[i][j].isConnected(board[i][j+1], 2) || !board[i][j].isConnected(board[i+1][j], 3)  || !board[i][j].isConnected(board[i][j-1], 4)) { 
-					//on regarde � chaque fois si elle est non connect�e � tous ses bords
+					//on regarde ��� chaque fois si elle est non connect���e ��� tous ses bords
 					board[i][j].setState(mark.DeadEnd);
 				}
 			}
 
-			//mark colonne coll�e � gauche
+			//mark colonne coll���e ��� gauche
 			if(!board[i][0].isConnected(board[i-1][0], 1) || !board[i][0].isConnected(board[i][1], 2) || !board[i][0].isConnected(board[i+1][0], 3) || !board[i][0].isConnected(null, 4)) { 
 				board[i][0].setState(mark.DeadEnd);
 			}
 
-			//colonne coll�e � droite
+			//colonne coll���e ��� droite
 			if(!board[i][board[i].length-1].isConnected(board[i-1][board[i].length-1], 1) || !board[i][board[i].length-1].isConnected(null, 2) || !board[i][board[i].length-1].isConnected(board[i+1][board[i].length-1], 3) || !board[i][board[i].length-1].isConnected(board[i][board[i].length-2], 4)) { 
 				board[i][board[i].length-1].setState(mark.DeadEnd);
 			}
 		}
 
-		//premi�re ligne
+		//premi���re ligne
 		for(int j=1; j<board[LINE-1].length-1; j++) {
 			if(isEmpty(0, j)) {
 				board[0][j].setState(mark.DeadEnd);
@@ -62,7 +77,7 @@ public class Board {
 			}
 		}
 
-		//derni�re ligne
+		//derni���re ligne
 		for(int j=1; j<board[LINE-1].length-1; j++) {
 			if(isEmpty(LINE-1, j)) {
 				board[LINE-1][j].setState(mark.DeadEnd);
@@ -86,14 +101,14 @@ public class Board {
 		}
 
 
-		//on reparcourt le tableau en s'arr�tant que sur les tuilles sans mark
+		//on reparcourt le tableau en s'arr���tant que sur les tuilles sans mark
 		boolean findMark = true;
 		while(findMark) {
 			findMark = false;
 			for(int i=0; i<board.length; i++) {
 				for(int j=0; j<board[i].length; j++) {
 					if(board[i][j].getState()==null) {
-						//on regarde ses voisins de branche, si ils sont marqu� alors on marque aussi
+						//on regarde ses voisins de branche, si ils sont marqu��� alors on marque aussi
 						//en haut
 						if(board[i][j].getNum()==1 || board[i][j].getNum()==3 || board[i][j].getNum()==6 || board[i][j].getNum()==7) {
 							if(board[i-1][j].getState()==mark.DeadEnd) {
@@ -101,7 +116,7 @@ public class Board {
 								findMark = true;
 							}
 						}
-						//� droite
+						//��� droite
 						if(board[i][j].getNum()==2 || board[i][j].getNum()==3 || board[i][j].getNum()==4 || board[i][j].getNum()==7) {
 							if(board[i][j+1].getState()==mark.DeadEnd) {
 								board[i][j].setState(mark.DeadEnd);
@@ -115,7 +130,7 @@ public class Board {
 								findMark = true;
 							}
 						}
-						//� gauche
+						//��� gauche
 						if(board[i][j].getNum()==2 || board[i][j].getNum()==5 || board[i][j].getNum()==6 || board[i][j].getNum()==7) {
 							if(board[i][j-1].getState()==mark.DeadEnd) {
 								board[i][j].setState(mark.DeadEnd);
@@ -128,7 +143,7 @@ public class Board {
 		}
 
 
-		//il ne reste plus que les circuits qui ne sont pas marqu�s
+		//il ne reste plus que les circuits qui ne sont pas marqu���s
 		int count = 0;
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
