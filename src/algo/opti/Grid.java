@@ -57,7 +57,7 @@ public class Grid {
 	}
 	
 	public void reset(OptiTile[][] t) {
-        this.tab = t.clone();
+        this.tab = t;
         this.paths = new ArrayList<Path>();
         this.maxLength = 0;
         this.longest = new Path();
