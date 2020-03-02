@@ -193,5 +193,16 @@ public class Grid {
 	public int getMaxLength() {
 	    return maxLength;
 	}
+	
+	/**
+     * Remplace la taille la plus grande enregistrée.
+     * 
+     * @param Length
+     *              La taille
+     * 
+     */
+    public void setMaxLength(int length) {
+        this.maxLength = length;
+    }
 
 }
