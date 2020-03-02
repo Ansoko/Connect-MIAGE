@@ -56,6 +56,13 @@ public class Grid {
 		this.longest = new Path();
 	}
 	
+	public void reset(OptiTile[][] t) {
+        this.tab = t.clone();
+        this.paths = new ArrayList<Path>();
+        this.maxLength = 0;
+        this.longest = new Path();
+    }
+	
 	/**
      * Créé un tableau aléatoire de tuiles et l'affiche à la fin
      * 
@@ -68,32 +75,32 @@ public class Grid {
 					int alea = 1 + (int)(Math.random() * 7);
 					switch (alea){
 					case(1):
-						setTab(i, j, new OptiTile(i, j, Type.DownLeft));
+						setTile(i, j, new OptiTile(i, j, Type.DownLeft));
 						break;
 					case(2):
-						setTab(i, j, new OptiTile(i, j, Type.DownRight));
+						setTile(i, j, new OptiTile(i, j, Type.DownRight));
 						break;
 					case(3):
-						setTab(i, j, new OptiTile(i, j, Type.TopLeft));
+						setTile(i, j, new OptiTile(i, j, Type.TopLeft));
 						break;
 					case(4):
-						setTab(i, j, new OptiTile(i, j, Type.TopRight));
+						setTile(i, j, new OptiTile(i, j, Type.TopRight));
 						break;
 					case(5):
-						setTab(i, j, new OptiTile(i, j, Type.Vertical));
+						setTile(i, j, new OptiTile(i, j, Type.Vertical));
 						break;
 					case(6):
-						setTab(i, j, new OptiTile(i, j, Type.Horizontal));
+						setTile(i, j, new OptiTile(i, j, Type.Horizontal));
 						break;
 					case(7):
-						setTab(i, j, new OptiTile(i, j, Type.Cross));
+						setTile(i, j, new OptiTile(i, j, Type.Cross));
 						break;
 					default : 
 						System.out.println("Erreur remplissage grille");
 						break;
 					}
 				}else {
-					setTab(i, j, new OptiTile(i, j, Type.Empty));
+					setTile(i, j, new OptiTile(i, j, Type.Empty));
 				}
 			}
 		}
@@ -121,7 +128,7 @@ public class Grid {
      *          La tuile à placer sur la case.
      * 
      */
-	public void setTab(int x, int y, OptiTile t){
+	public void setTile(int x, int y, OptiTile t){
 		this.tab[x][y] = t;
 	}
 	
