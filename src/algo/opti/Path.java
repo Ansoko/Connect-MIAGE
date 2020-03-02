@@ -8,6 +8,21 @@ import java.util.Map;
 import java.util.HashMap;
 import connect.*;
 
+/**
+ * <b>Path est la classe représentant un circuit de tuile.</b>
+ * <p>
+ * Un circuit est caractérisé par les informations suivantes :
+ * <ul>
+ * <li>Une liste de tuiles qui le composent</li>
+ * <li>Un booléen déterminant si le circuit est fermé ou ouvert</li>
+ * </ul>
+ * </p>
+ * 
+ * @see OptiTile
+ * 
+ * @author Valentine_Bouché
+ * @version 1.0
+ */
 public class Path {
 	private boolean cycle;
 	private List<OptiTile> optiTiles;
