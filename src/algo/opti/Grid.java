@@ -61,6 +61,7 @@ public class Grid {
      * 
      */
 	public void createAleaTab() {
+	    this.maxLength = 0;
 		for (int i = 0; i < tab.length; i++) {
 			for (int j = 0; j < tab[i].length; j++) {
 				if(Math.random()*100 <= 75) {//test si on pose une tuile ou non à 75%
@@ -161,7 +162,6 @@ public class Grid {
 		for(Path p : this.paths ) {
 			if(p.getClosed()) {
 			    int length = p.getPath().size()+p.nbCross();
-				System.out.println(length);
 				if(length >= max) {
 					max = length;
 					p1 = p;
@@ -193,16 +193,4 @@ public class Grid {
 	public int getMaxLength() {
 	    return maxLength;
 	}
-	
-	/**
-     * Remplace la taille la plus grande enregistrée.
-     * 
-     * @param Length
-     *              La taille
-     * 
-     */
-    public void setMaxLength(int length) {
-        this.maxLength = length;
-    }
-
 }
