@@ -40,7 +40,15 @@ public class Grid {
 		DrawMap.put(Type.Cross, "╬");
 	}
 	
-	
+	/**
+     * Constructeur de la grille de jeu
+     * 
+     * @param i
+     *          La taille du tableau en x.
+     * @param j
+     *          La taille du tableau en y.
+     * 
+     */
 	public Grid(int i, int j) {
 		this.tab = new OptiTile[i][j];
 		this.paths = new ArrayList<Path>();
@@ -48,53 +56,78 @@ public class Grid {
 		this.longest = new Path();
 	}
 	
-	public void createAleaGrid() {
+	/**
+     * Créé un tableau aléatoire de tuiles et l'affiche à la fin
+     * 
+     */
+	public void createAleaTab() {
 		for (int i = 0; i < tab.length; i++) {
 			for (int j = 0; j < tab[i].length; j++) {
 				if(Math.random()*100 <= 75) {//test si on pose une tuile ou non à 75%
 					int alea = 1 + (int)(Math.random() * 7);
 					switch (alea){
 					case(1):
-						setGrid(i, j, new OptiTile(i, j, Type.DownLeft));
+						setTab(i, j, new OptiTile(i, j, Type.DownLeft));
 						break;
 					case(2):
-						setGrid(i, j, new OptiTile(i, j, Type.DownRight));
+						setTab(i, j, new OptiTile(i, j, Type.DownRight));
 						break;
 					case(3):
-						setGrid(i, j, new OptiTile(i, j, Type.TopLeft));
+						setTab(i, j, new OptiTile(i, j, Type.TopLeft));
 						break;
 					case(4):
-						setGrid(i, j, new OptiTile(i, j, Type.TopRight));
+						setTab(i, j, new OptiTile(i, j, Type.TopRight));
 						break;
 					case(5):
-						setGrid(i, j, new OptiTile(i, j, Type.Vertical));
+						setTab(i, j, new OptiTile(i, j, Type.Vertical));
 						break;
 					case(6):
-						setGrid(i, j, new OptiTile(i, j, Type.Horizontal));
+						setTab(i, j, new OptiTile(i, j, Type.Horizontal));
 						break;
 					case(7):
-						setGrid(i, j, new OptiTile(i, j, Type.Cross));
+						setTab(i, j, new OptiTile(i, j, Type.Cross));
 						break;
 					default : 
 						System.out.println("Erreur remplissage grille");
 						break;
 					}
 				}else {
-					setGrid(i, j, new OptiTile(i, j, Type.Empty));
+					setTab(i, j, new OptiTile(i, j, Type.Empty));
 				}
 			}
 		}
 		showTab();
 	}
 	
-	public OptiTile[][] getGrid(){
+	/**
+     * Retourne le tableau de tuiles
+     * 
+     * @return tab le tableau de tuiles
+     * 
+     */
+	public OptiTile[][] getTab(){
 		return this.tab;
 	}
 	
-	public void setGrid(int i, int j, OptiTile t){
-		this.tab[i][j] = t;
+	/**
+     * Ajoute une tuile à une case de la grille
+     * 
+     * @param x
+     *          La position en x.
+     * @param y
+     *          La position en y.
+     * @param t
+     *          La tuile à placer sur la case.
+     * 
+     */
+	public void setTab(int x, int y, OptiTile t){
+		this.tab[x][y] = t;
 	}
 	
+	/**
+     * Affiche la grille de tuiles
+     * 
+     */
 	public void showTab() {
 		for (int i = 0; i < tab.length; i++) {
 			for (int j = 0; j < tab[i].length; j++) {
@@ -104,16 +137,10 @@ public class Grid {
 		}
 	}
 	
-	//cherche si la tuile est déjà dans un trajet existant obsolète ? ??
-	public boolean checkPaths(OptiTile t) {
-		for(Path p : paths) {
-			if(p.ownsTile(t))
-				return true;
-		}
-		return false;
-	}
-	
-	//crée des trajets
+	/**
+     * Lance la recherche des circuits en parcourant chaque case du tableau
+     * 
+     */
 	public void launcher() {
 		for (int i = 0; i < tab.length; i++) {
 			for (int j = 0; j < tab[i].length; j++) {
@@ -124,12 +151,15 @@ public class Grid {
 		}
 	}
 	
-	//cherche le plus long trajet
+	/**
+     * Recherche le circuit le plus long parmis les circuits enregistrés
+     * 
+     */
 	public void lookForLongest() { 
 		Path p1 = new Path();
 		int max = 0;
 		for(Path p : this.paths ) {
-			if(p.getCycle()) {
+			if(p.getClosed()) {
 			    int length = p.getPath().size()+p.nbCross();
 				System.out.println(length);
 				if(length >= max) {
@@ -143,7 +173,7 @@ public class Grid {
 	}
 	
 	/**
-     * Renvoie le résultat de la rechere du plus long algo
+     * Affiche le résultat de la recherche du plus long circuit fermé
      * 
      */
 	public void getResult() {

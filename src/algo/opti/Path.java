@@ -24,38 +24,75 @@ import connect.*;
  * @version 1.0
  */
 public class Path {
-	private boolean cycle;
+	private boolean closed;
 	private List<OptiTile> optiTiles;
 	
-	
-	public Path(OptiTile[][] grid, OptiTile starter) {
-		this.cycle = true;
+    /**
+     * Constructeur du circuit
+     * 
+     * @param tab
+     *          Le tableau de tuiles.
+     * @param starter
+     *          La première tuile de ce circuit.
+     * 
+     * @see OptiTile
+     */
+	public Path(OptiTile[][] tab, OptiTile starter) {
+		this.closed = true;
 		this.optiTiles = new ArrayList<>();
 		this.optiTiles.add(starter);
 		starter.setMark(true);
-		this.fillPath(grid, starter.getX(), starter.getY());
-		if(this.cycle)
-		    System.out.println("J'ai créé un trajet de valeur "+ this.cycle);
+		this.fillPath(tab, starter.getX(), starter.getY());
+		if(this.closed)
+		    System.out.println("J'ai créé un trajet de valeur "+ this.closed);
 	}
 	
+    /**
+     * Constructeur vide de la grille de jeu
+     * 
+     */
 	public Path() {
-		this.cycle = true;
+		this.closed = true;
 		this.optiTiles = new ArrayList<>();
 	}
 	
+	/**
+     * Retourne le circuit 
+     * 
+     * @return optiTiles
+     * 
+     */
 	public List<OptiTile> getPath(){
 		return this.optiTiles;
 	}
 	
-	public void setCycle(boolean cycle) {
-		this.cycle = cycle;
+	/**
+     * Change l'état du circuit
+     * 
+     * @param closed
+     *          L'état du circuit
+     * 
+     */
+	public void setClosed(boolean closed) {
+		this.closed = closed;
 	}
 	
-	public boolean getCycle() {
-		return cycle;
+	/**
+     * Renvoie l'état du circuit
+     * 
+     * @return closed
+     * 
+     */
+	public boolean getClosed() {
+		return closed;
 	}
 	
-	//retourne le nombre de croix d'un trajet
+	/**
+     * Retourne le nombre de croix d'un circuit
+     * 
+     * @return nb le nombre de croix
+     * 
+     */
 	public int nbCross() {
 		int nb = 0;
 		for (int i = 0; i < this.optiTiles.size(); i++) {
@@ -66,7 +103,12 @@ public class Path {
 		return nb;
 	}
 	
-	//Retourne vrai si la case n'est pas en dehors du grid
+	/**
+     * Retourne vrai si la case est bien existante et dans les bornes du tableau, sinon faux
+     * 
+     * @return exists
+     * 
+     */
 	private boolean checkIfTileExists(OptiTile[][] grid, int coordX, int coordY) { 
 		boolean exist = true;
 		try {
@@ -78,26 +120,30 @@ public class Path {
 		return exist;
 	}
 	
-	//Retourne vrai si la direction est dans le tableau
-		private boolean checkIfDirectionExists(Direction[] t, Direction dir) { 
-			int i = 0; //to erase
-			if(t != null) {
-				for(Direction d : t) {
-					if(dir == d) {
-						return true;
-					}
-					i++;
-				}
+	/**
+     * Retourne vrai si la direction est dans le tableau
+     * 
+     * @param t
+     *          Le tableau de directions possibles
+     * @param dir
+     *          Une direction
+     * 
+     */
+	private boolean checkIfDirectionExists(Direction[] t, Direction dir) { 
+		if(t != null) {
+			for(Direction d : t) {
+				if(dir == d)
+					return true;
 			}
-			return false;
 		}
-	
-	//Retourne vrai si le trajet possède une tuile donnée // obsolète ?
-	public boolean ownsTile(OptiTile t) {
-		return optiTiles.contains(t); // complecité de la fonction contain ?
+		return false;
 	}
 	
-	//remplit le trajet même s'il est pas fermé
+	//
+	/**
+     * Recherche toutes les tuiles composants un circuit, qu'il soit fermé ou ouvert
+     * 
+     */
 	private void fillPath(OptiTile[][] grid, int i, int j) {
 		for(Direction dir : Main.ConnectionsMap.get(grid[i][j].getType())) {
 			switch(dir) {
@@ -109,8 +155,8 @@ public class Path {
 							this.fillPath(grid, i-1, j);
 						}
 					} else {
-						if(this.getCycle() != false)
-							this.setCycle(false);
+						if(this.getClosed() != false)
+							this.setClosed(false);
 						//System.out.println("Circuit ouvert Top");
 					}
 					break;
@@ -123,8 +169,8 @@ public class Path {
 							this.fillPath(grid, i+1, j);
 							}
 					} else {
-						if(this.getCycle() != false)
-							this.setCycle(false);
+						if(this.getClosed() != false)
+							this.setClosed(false);
 						//System.out.println("Circuit ouvert Down");
 					}
 					break;
@@ -136,8 +182,8 @@ public class Path {
 							this.fillPath(grid, i, j-1);
 						}
 					} else {
-						if(this.getCycle() != false)
-							this.setCycle(false);
+						if(this.getClosed() != false)
+							this.setClosed(false);
 						//System.out.println("Circuit ouvert Left");
 					}
 					break;
@@ -149,8 +195,8 @@ public class Path {
 							this.fillPath(grid, i, j+1);
 						}
 					} else {
-						if(this.getCycle() != false)
-							this.setCycle(false);
+						if(this.getClosed() != false)
+							this.setClosed(false);
 						//System.out.println("Circuit ouvert Right");
 					}
 					break;
