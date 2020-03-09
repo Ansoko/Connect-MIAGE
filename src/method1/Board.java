@@ -1,15 +1,19 @@
 package method1;
 
+import java.util.List;
+
 import method1.Tile.mark;
 
 public class Board {
-	public final int LINE = 10;
-	public final int ROW = 30;
+	
+	public int LINE;
+	public int ROW;
 	private Tile board[][];
 	private int longest;
 	
-
-	public Board() { // automatiques avec les constantes
+	public Board() { // tableau aléatoire
+		LINE = 10;
+		ROW = 30;
 		board = new Tile[LINE][ROW];
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
@@ -17,6 +21,17 @@ public class Board {
 			}
 		}
 		longest = 0;
+	}
+
+	public Board(List<String[]> tableTest) {
+		LINE = tableTest.size();
+		ROW = tableTest.get(0).length;
+		board = new Tile[LINE][ROW];
+		for(int i=0; i<board.length; i++) {
+			for(int j=0; j<board[i].length; j++) {
+				board[i][j]=new Tile(tableTest.get(i)[j]);
+			}
+		}
 	}
 
 	public String toString() {
@@ -63,7 +78,7 @@ public class Board {
 			}
 		}
 
-		//derni���re ligne
+		//dernière ligne
 		for(int j=1; j<board[LINE-1].length-1; j++) {
 			if(isEmpty(LINE-1, j)) {
 				board[LINE-1][j].setState(mark.DeadEnd);
@@ -87,7 +102,7 @@ public class Board {
 		}
 
 
-		//on reparcourt le tableau en s'arr���tant que sur les tuilles sans mark
+		//on reparcourt le tableau en s'arrêtant uniquement sur les tuilles sans mark
 		boolean findMark = true;
 		while(findMark) {
 			findMark = false;
@@ -134,9 +149,9 @@ public class Board {
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
 				if(board[i][j].getState()==null) {
-					board[i][j].setState(mark.Start);
+					board[i][j].setState(mark.Connect);
 					count = calculateCircuit(i,j);
-					System.out.println("Find chemin : "+count);
+					System.out.println("Circuit de longueur "+count+".");
 					if(count > longest) {
 						longest = count;
 					}
@@ -158,21 +173,53 @@ public class Board {
 		if(board[i][j].getExit("up") && board[i][j].isConnected(board[i-1][j], 1) 
 				&& (board[i-1][j].getState()==null||board[i-1][j].getState()==mark.Cross)) {
 			
-			board[i-1][j].setState(mark.Connect);
+			if(board[i-1][j].getNum()==7 && board[i-1][j].getState()!=mark.Cross) { //une case "croix" peut être traversée 2 fois
+				board[i-1][j].setState(mark.Cross);
+			}else {
+				board[i-1][j].setState(mark.Connect);
+			}
+			
 			return 1 + calculateCircuit(i-1, j);	
 		}
 		//right
 		if(board[i][j].getExit("right") && board[i][j].isConnected(board[i][j+1], 2) 
 				&& (board[i][j+1].getState()==null||board[i][j+1].getState()==mark.Cross)) {
 			
-			board[i][j+1].setState(mark.Connect);
+			if(board[i][j+1].getNum()==7 && board[i][j+1].getState()!=mark.Cross) { //une case "croix" peut être traversée 2 fois
+				board[i][j+1].setState(mark.Cross);
+			}else {
+				board[i][j+1].setState(mark.Connect);
+			}
+			
 			return 1 + calculateCircuit(i, j+1);	
 		}
-		//bottom
-		
+		//down
+		if(board[i][j].getExit("down") && board[i][j].isConnected(board[i+1][j], 3) 
+				&& (board[i+1][j].getState()==null||board[i+1][j].getState()==mark.Cross)) {
+			
+			if(board[i+1][j].getNum()==7 && board[i-1][j].getState()!=mark.Cross) { //une case "croix" peut être traversée 2 fois
+				board[i+1][j].setState(mark.Cross);
+			}else {
+				board[i+1][j].setState(mark.Connect);
+			}
+			
+			return 1 + calculateCircuit(i+1, j);
+		}
 		//left
+		if(board[i][j].getExit("left") && board[i][j].isConnected(board[i][j-1], 4) 
+				&& (board[i][j-1].getState()==null||board[i][j-1].getState()==mark.Cross)) {
+			
+			if(board[i][j-1].getNum()==7 && board[i][j-1].getState()!=mark.Cross) { //une case "croix" peut être traversée 2 fois
+				board[i][j-1].setState(mark.Cross);
+			}else {
+				board[i][j-1].setState(mark.Connect);
+			}
+			
+			return 1 + calculateCircuit(i, j-1);
+		}
 		
-		return 0;
+		//default
+		return 1;
 	}
 }
 
