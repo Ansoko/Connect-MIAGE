@@ -136,7 +136,6 @@ public class Board {
 				if(board[i][j].getState()==null) {
 					board[i][j].setState(mark.Start);
 					count = calculateCircuit(i,j);
-					System.out.println("Find chemin : "+count);
 					if(count > longest) {
 						longest = count;
 					}
@@ -158,21 +157,53 @@ public class Board {
 		if(board[i][j].getExit("up") && board[i][j].isConnected(board[i-1][j], 1) 
 				&& (board[i-1][j].getState()==null||board[i-1][j].getState()==mark.Cross)) {
 			
-			board[i-1][j].setState(mark.Connect);
+			if(board[i-1][j].getNum()==7 && board[i-1][j].getState()!=mark.Cross) { //une case "croix" peut être traversée 2 fois
+				board[i-1][j].setState(mark.Cross);
+			}else {
+				board[i-1][j].setState(mark.Connect);
+			}
+			
 			return 1 + calculateCircuit(i-1, j);	
 		}
 		//right
 		if(board[i][j].getExit("right") && board[i][j].isConnected(board[i][j+1], 2) 
 				&& (board[i][j+1].getState()==null||board[i][j+1].getState()==mark.Cross)) {
 			
-			board[i][j+1].setState(mark.Connect);
+			if(board[i][j+1].getNum()==7 && board[i][j+1].getState()!=mark.Cross) { //une case "croix" peut être traversée 2 fois
+				board[i][j+1].setState(mark.Cross);
+			}else {
+				board[i][j+1].setState(mark.Connect);
+			}
+			
 			return 1 + calculateCircuit(i, j+1);	
 		}
-		//bottom
-		
+		//down
+		if(board[i][j].getExit("down") && board[i][j].isConnected(board[i+1][j], 3) 
+				&& (board[i+1][j].getState()==null||board[i+1][j].getState()==mark.Cross)) {
+			
+			if(board[i+1][j].getNum()==7 && board[i-1][j].getState()!=mark.Cross) { //une case "croix" peut être traversée 2 fois
+				board[i+1][j].setState(mark.Cross);
+			}else {
+				board[i+1][j].setState(mark.Connect);
+			}
+			
+			return 1 + calculateCircuit(i+1, j);
+		}
 		//left
+		if(board[i][j].getExit("left") && board[i][j].isConnected(board[i][j-1], 4) 
+				&& (board[i][j-1].getState()==null||board[i][j-1].getState()==mark.Cross)) {
+			
+			if(board[i][j-1].getNum()==7 && board[i][j-1].getState()!=mark.Cross) { //une case "croix" peut être traversée 2 fois
+				board[i][j-1].setState(mark.Cross);
+			}else {
+				board[i][j-1].setState(mark.Connect);
+			}
+			
+			return 1 + calculateCircuit(i, j-1);
+		}
 		
-		return 0;
+		//default
+		return 1;
 	}
 }
 
