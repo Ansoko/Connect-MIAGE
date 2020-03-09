@@ -1,27 +1,13 @@
 package method1;
-import java.util.HashMap;
-import java.util.Map;
 
 import method1.Tile.mark;
 
 public class Board {
-	public final int LINE = 5;
-	public final int ROW = 5;
+	public final int LINE = 10;
+	public final int ROW = 30;
 	private Tile board[][];
 	private int longest;
 	
-	public static final Map<Integer, String> DrawMap ;
-	static {
-		DrawMap = new HashMap<>();
-		DrawMap.put(0, " ");
-		DrawMap.put(3, "╚");
-		DrawMap.put(6, "╝");
-		DrawMap.put(4, "╔");
-		DrawMap.put(5, "╗");
-		DrawMap.put(1, "║");
-		DrawMap.put(2, "═");
-		DrawMap.put(7, "╬");
-	}
 
 	public Board() { // automatiques avec les constantes
 		board = new Tile[LINE][ROW];
@@ -37,7 +23,7 @@ public class Board {
 		String tab="";
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
-				tab = tab + board[i][j].toString() + " ";
+				tab = tab + board[i][j].toString();
 			}
 			tab = tab + "\n";
 		}
@@ -116,7 +102,7 @@ public class Board {
 								findMark = true;
 							}
 						}
-						//��� droite
+						//à droite
 						if(board[i][j].getNum()==2 || board[i][j].getNum()==3 || board[i][j].getNum()==4 || board[i][j].getNum()==7) {
 							if(board[i][j+1].getState()==mark.DeadEnd) {
 								board[i][j].setState(mark.DeadEnd);
@@ -130,7 +116,7 @@ public class Board {
 								findMark = true;
 							}
 						}
-						//��� gauche
+						//à gauche
 						if(board[i][j].getNum()==2 || board[i][j].getNum()==5 || board[i][j].getNum()==6 || board[i][j].getNum()==7) {
 							if(board[i][j-1].getState()==mark.DeadEnd) {
 								board[i][j].setState(mark.DeadEnd);
@@ -143,13 +129,14 @@ public class Board {
 		}
 
 
-		//il ne reste plus que les circuits qui ne sont pas marqu���s
+		//il ne reste plus que les circuits, qui ne sont pas marqués
 		int count = 0;
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
 				if(board[i][j].getState()==null) {
 					board[i][j].setState(mark.Start);
 					count = calculateCircuit(i,j);
+					System.out.println("Find chemin : "+count);
 					if(count > longest) {
 						longest = count;
 					}
@@ -157,6 +144,7 @@ public class Board {
 			}
 
 		}
+		System.out.println("Le plus long chemin est de "+longest);
 	}
 
 	private boolean isEmpty(int i, int j) {
@@ -166,9 +154,24 @@ public class Board {
 	}
 
 	private int calculateCircuit(int i, int j){
-		if((board[i][j].getNum()==1 || board[i][j].getNum()==3 || board[i][j].getNum()==6) && board[i][j].isConnected(board[i-1][j], 1) && board[i-1][j].getState()==null) {
+		//up
+		if(board[i][j].getExit("up") && board[i][j].isConnected(board[i-1][j], 1) 
+				&& (board[i-1][j].getState()==null||board[i-1][j].getState()==mark.Cross)) {
+			
+			board[i-1][j].setState(mark.Connect);
 			return 1 + calculateCircuit(i-1, j);	
 		}
+		//right
+		if(board[i][j].getExit("right") && board[i][j].isConnected(board[i][j+1], 2) 
+				&& (board[i][j+1].getState()==null||board[i][j+1].getState()==mark.Cross)) {
+			
+			board[i][j+1].setState(mark.Connect);
+			return 1 + calculateCircuit(i, j+1);	
+		}
+		//bottom
+		
+		//left
+		
 		return 0;
 	}
 }
