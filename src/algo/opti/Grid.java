@@ -63,6 +63,16 @@ public class Grid {
         this.longest = new Path();
     }
 	
+	public OptiTile[][] forcedClone(OptiTile[][] t) {
+	    OptiTile[][] tab = new OptiTile[t.length][t[0].length];
+	    for (int i = 0; i < t.length; i++) {
+            for (int j = 0; j < t[i].length; j++) {
+                tab[i][j] = new OptiTile(t[i][j].getX(), t[i][j].getY(), t[i][j].getType());
+            }
+	    }
+	    return tab;
+    }
+	
 	/**
      * Créé un tableau aléatoire de tuiles et l'affiche à la fin
      * 
@@ -104,7 +114,6 @@ public class Grid {
 				}
 			}
 		}
-		showTab();
 	}
 	
 	/**
@@ -137,8 +146,11 @@ public class Grid {
      * 
      */
 	public void showTab() {
-		for (int i = 0; i < tab.length; i++) {
-			for (int j = 0; j < tab[i].length; j++) {
+	    System.out.println(tab[0].length);
+		for (int i = 0; i < this.tab.length; i++) {
+			for (int j = 0; j < this.tab[i].length; j++) {
+			    System.out.println(tab[i][j]);
+			    System.out.println(tab[i][j].getType());
 				System.out.print(Grid.DrawMap.get(this.tab[i][j].getType()));
 			}
 			System.out.println();
