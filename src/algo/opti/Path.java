@@ -9,18 +9,18 @@ import java.util.HashMap;
 import connect.*;
 
 /**
- * <b>Path est la classe représentant un circuit de tuile.</b>
+ * <b>Path est la classe repr��sentant un circuit de tuile.</b>
  * <p>
- * Un circuit est caractérisé par les informations suivantes :
+ * Un circuit est caract��ris�� par les informations suivantes :
  * <ul>
  * <li>Une liste de tuiles qui le composent</li>
- * <li>Un booléen déterminant si le circuit est fermé ou ouvert</li>
+ * <li>Un bool��en d��terminant si le circuit est ferm�� ou ouvert</li>
  * </ul>
  * </p>
  * 
  * @see OptiTile
  * 
- * @author Valentine_Bouché
+ * @author Valentine_Bouch��
  * @version 1.0
  */
 public class Path {
@@ -33,7 +33,7 @@ public class Path {
      * @param tab
      *          Le tableau de tuiles.
      * @param starter
-     *          La première tuile de ce circuit.
+     *          La premi��re tuile de ce circuit.
      * 
      * @see OptiTile
      */
@@ -67,10 +67,10 @@ public class Path {
 	}
 	
 	/**
-     * Change l'état du circuit
+     * Change l'��tat du circuit
      * 
      * @param closed
-     *          L'état du circuit
+     *          L'��tat du circuit
      * 
      */
 	public void setClosed(boolean closed) {
@@ -78,7 +78,7 @@ public class Path {
 	}
 	
 	/**
-     * Renvoie l'état du circuit
+     * Renvoie l'��tat du circuit
      * 
      * @return closed
      * 
@@ -141,7 +141,7 @@ public class Path {
 	
 	//
 	/**
-     * Recherche toutes les tuiles composants un circuit, qu'il soit fermé ou ouvert
+     * Recherche toutes les tuiles composants un circuit, qu'il soit ferm�� ou ouvert
      * 
      */
 	private void fillPath(OptiTile[][] grid, int i, int j) {

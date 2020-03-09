@@ -1,5 +1,10 @@
 package method1;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import algo.opti.Grid;
+
 public class Tile {
 
 	public enum mark{
@@ -11,25 +16,72 @@ public class Tile {
 
 	private mark state;
 
-	private int num; //numéro de la tuile correspond à son type
+	private int num; //numÃ©ro de la tuile correspond ï¿½ son type
 	/* 0 : vide
 	 * 1 : ns   2 : we 
 	 * 3 : ne   4 : se   5 : sw  6 : nw 
 	 * 7 : croix
 	 */
+	
+	private boolean up;
+	private boolean down;
+	private boolean left;
+	private boolean right;
+	
 
+	public static final Map<Integer, String> DrawMap2 ;
+	static {
+		DrawMap2 = new HashMap<>();
+		DrawMap2.put(0, " ");
+		DrawMap2.put(3, "â•š");
+		DrawMap2.put(6, "â•");
+		DrawMap2.put(4, "â•”");
+		DrawMap2.put(5, "â•—");
+		DrawMap2.put(1, "â•‘");
+		DrawMap2.put(2, "â•");
+		DrawMap2.put(7, "â•¬");
+	}
+	
 	public Tile(int num) {
+		up = false;
+		down = false;
+		left = false;
+		right = false;
 		this.num = num;
 	}
 
-	public Tile() {
+	public Tile() { //random
+		up = false;
+		down = false;
+		left = false;
+		right = false;
 		num = 0+(int)(Math.random() * (7 - 0 + 1));
+		if(num == 1) {
+			up = true;
+			down = true;
+		}else if(num == 2) {
+			left = true;
+			right = true;
+		}else if(num == 3) {
+			up = true;
+			right = true;
+		}else if(num == 4) {
+			down = true;
+			right = true;
+		}else if(num == 5) {
+			down = true;
+			left = true;
+		}else if(num == 6) {
+			up = true;
+			left = true;
+		}else if(num == 7) {
+			up = true;
+			down = true;
+			right = true;
+			left = true;
+		}
+			
 	}
-
-	//factory
-	public static Tile createTile() {
-		return new Tile();
-	}	
 
 
 	public int getNum() {
@@ -48,22 +100,38 @@ public class Tile {
 		this.state = state;
 	}
 
+	public boolean getExit(String exit) {
+		if(exit == "down") {
+			return down;
+		}
+		if(exit == "up") {
+			return up;
+		}
+		if(exit == "left") {
+			return left;
+		}
+		if(exit == "right") {
+			return right;
+		}
+		return false;
+	}
+	
 	public String toString() {
-		return num+"";
+		return DrawMap2.get((Object)num);
 	}
 
 	/**
-	 * isConnected retourne vrai si les deux tuilles peuvent être l'une à coté de l'autre.
+	 * isConnected retourne vrai si les deux tuilles peuvent ï¿½tre l'une ï¿½ cotï¿½ de l'autre.
 	 * 
 	 * @param t
-	 * (dans le cas où la tuille est au bord, on considérera le bord comme une tuille t==null)
+	 * (dans le cas oÃ¹ la tuille est au bord, on considÃ©rera le bord comme une tuille t==null)
 	 * @param pos
 	 * : 1=nord, 2=est, 3=sud, 4=ouest
 	 * @return 
 	 * <ul>
-	 * <li>Retourne VRAI si les tuilles sont connectées,</li>
-	 * <li>Retourne FAUX si la tuille est connectée à la tuille t alors qu'elle ne devrait pas,</li>
-	 * <li>Retourne VRAI si les tuilles ne sont pas connectées.</li>
+	 * <li>Retourne VRAI si les tuilles sont connectï¿½es,</li>
+	 * <li>Retourne FAUX si la tuille est connectï¿½e ï¿½ la tuille t alors qu'elle ne devrait pas,</li>
+	 * <li>Retourne VRAI si les tuilles ne sont pas connectï¿½es.</li>
 	 * </ul>
 	 */
 	public boolean isConnected(Tile t, int pos) {	
@@ -73,47 +141,47 @@ public class Tile {
 
 		switch(pos) {
 		case 1:
-			if(t==null && (num==2 || num==4 || num==5))
-				return true; //pas connecté au bord, cad que la tuille peut être positionnée ici
+			if(t==null && !up)
+				return true; //pas connectï¿½ au bord, cad que la tuille peut ï¿½tre positionnï¿½e ici
 			if(t==null)
 				return false;
 
-			if((num==1 || num==3 || num==6 || num==7) && (t.num==1 || t.num==4 || t.num==5 || t.num==7))
+			if(up && t.down)
 				return true;
-			if((num==1 || num==3 || num==6 || num==7) && (t.num==2 || t.num==3 || t.num==6 || t.num==0))
+			if(up && !t.down)
 				return false;
 			break;
 		case 2:
-			if(t==null && (num==1 || num==5 || num==6))
+			if(t==null && !right)
 				return true;
 			else if(t==null)
 				return false;
 
-			if((num==2 || num==3 || num==4 || num==7) && (t.num==2 || t.num==5 || t.num==6 || t.num==7))
+			if(right && t.left)
 				return true;
-			if((num==2 || num==3 || num==4 || num==7) && (t.num==1 || t.num==3 || t.num==4 || t.num==0))
+			if(right && !t.left)
 				return false;
 			break;
 		case 3:
-			if(t==null && (num==2 || num==3 || num==6))
+			if(t==null && !down)
 				return true;
 			else if(t==null)
 				return false;
 
-			if((num==1 || num==4 || num==5 || num==7) && (t.num==1 || t.num==3 || t.num==6 || t.num==7))
+			if(down && t.up)
 				return true;
-			if((num==1 || num==4 || num==5 || num==7) && (t.num==2 || t.num==4 || t.num==5 || t.num==0))
+			if(down && !t.up)
 				return false;
 			break;
 		case 4:
-			if(t==null && (num==1 || num==3 || num==4))
+			if(t==null && !left)
 				return true;
 			else if(t==null)
 				return false;
 
-			if((num==2 || num==5 || num==6 || num==7) && (t.num==2 || t.num==3 || t.num==4 || t.num==7))
+			if(left && t.right)
 				return true;
-			if((num==2 || num==5 || num==6 || num==7) && (t.num==1 || t.num==5 || t.num==6 || t.num==0))
+			if(left && !t.right)
 				return false;
 			break;
 		default:
