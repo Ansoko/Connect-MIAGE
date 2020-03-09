@@ -42,12 +42,45 @@ public class Tile {
 		DrawMap2.put(7, "╬");
 	}
 	
-	public Tile(int num) {
+	public Tile(String shape) {
 		up = false;
 		down = false;
 		left = false;
 		right = false;
-		this.num = num;
+		
+		if(shape.contains("║")) {
+			up = true;
+			down = true;
+			num = 1;
+		}else if(shape.contains("═")) {
+			left = true;
+			right = true;
+			num = 2;
+		}else if(shape.contains("╚")) {
+			up = true;
+			right = true;
+			num = 3;
+		}else if(shape.contains("╔")) {
+			down = true;
+			right = true;
+			num = 4;
+		}else if(shape.contains("╗")) {
+			down = true;
+			left = true;
+			num = 5;
+		}else if(shape.contains("╝")) {
+			up = true;
+			left = true;
+			num = 6;
+		}else if(shape.contains("╬")) {
+			up = true;
+			down = true;
+			right = true;
+			left = true;
+			num = 7;
+		}else {
+			num=0;
+		}
 	}
 
 	public Tile() { //random

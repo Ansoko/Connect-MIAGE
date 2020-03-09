@@ -1,15 +1,19 @@
 package method1;
 
+import java.util.List;
+
 import method1.Tile.mark;
 
 public class Board {
-	public final int LINE = 10;
-	public final int ROW = 30;
+	
+	public int LINE;
+	public int ROW;
 	private Tile board[][];
 	private int longest;
 	
-
-	public Board() { // automatiques avec les constantes
+	public Board() { // tableau aléatoire
+		LINE = 10;
+		ROW = 30;
 		board = new Tile[LINE][ROW];
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
@@ -17,6 +21,17 @@ public class Board {
 			}
 		}
 		longest = 0;
+	}
+
+	public Board(List<String[]> tableTest) {
+		LINE = tableTest.size();
+		ROW = tableTest.get(0).length;
+		board = new Tile[LINE][ROW];
+		for(int i=0; i<board.length; i++) {
+			for(int j=0; j<board[i].length; j++) {
+				board[i][j]=new Tile(tableTest.get(i)[j]);
+			}
+		}
 	}
 
 	public String toString() {
@@ -63,7 +78,7 @@ public class Board {
 			}
 		}
 
-		//derni���re ligne
+		//dernière ligne
 		for(int j=1; j<board[LINE-1].length-1; j++) {
 			if(isEmpty(LINE-1, j)) {
 				board[LINE-1][j].setState(mark.DeadEnd);
@@ -87,7 +102,7 @@ public class Board {
 		}
 
 
-		//on reparcourt le tableau en s'arr���tant que sur les tuilles sans mark
+		//on reparcourt le tableau en s'arrêtant uniquement sur les tuilles sans mark
 		boolean findMark = true;
 		while(findMark) {
 			findMark = false;
@@ -136,6 +151,7 @@ public class Board {
 				if(board[i][j].getState()==null) {
 					board[i][j].setState(mark.Start);
 					count = calculateCircuit(i,j);
+					System.out.println("Circuit de longueur "+count+".");
 					if(count > longest) {
 						longest = count;
 					}
