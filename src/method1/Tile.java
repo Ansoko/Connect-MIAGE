@@ -9,7 +9,6 @@ public class Tile {
 
 	public enum mark{
 		DeadEnd, 
-		Start, 
 		Connect, 
 		Cross;
 	}

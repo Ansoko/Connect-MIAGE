@@ -149,7 +149,7 @@ public class Board {
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
 				if(board[i][j].getState()==null) {
-					board[i][j].setState(mark.Start);
+					board[i][j].setState(mark.Connect);
 					count = calculateCircuit(i,j);
 					System.out.println("Circuit de longueur "+count+".");
 					if(count > longest) {
