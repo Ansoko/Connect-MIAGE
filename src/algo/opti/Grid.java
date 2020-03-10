@@ -41,7 +41,7 @@ public class Grid {
 	}
 	
 	/**
-     * Constructeur de la grille de jeu
+     * Constructeur de la grille vide de jeu
      * 
      * @param i
      *          La taille du tableau en x.
