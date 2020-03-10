@@ -146,11 +146,8 @@ public class Grid {
      * 
      */
 	public void showTab() {
-	    System.out.println(tab[0].length);
 		for (int i = 0; i < this.tab.length; i++) {
 			for (int j = 0; j < this.tab[i].length; j++) {
-			    System.out.println(tab[i][j]);
-			    System.out.println(tab[i][j].getType());
 				System.out.print(Grid.DrawMap.get(this.tab[i][j].getType()));
 			}
 			System.out.println();
