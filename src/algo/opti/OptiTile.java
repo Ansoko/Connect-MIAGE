@@ -1,9 +1,9 @@
 package algo.opti;
 
 /**
- * <b>OptiTile est la classe représentant une tuile du jeu.</b>
+ * <b>OptiTile est la classe repr��sentant une tuile du jeu.</b>
  * <p>
- * Une tuile est caractérisée par les informations suivantes :
+ * Une tuile est caract��ris��e par les informations suivantes :
  * <ul>
  * <li>Une position en x</li>
  * <li>Une position en y</li>
@@ -14,7 +14,7 @@ package algo.opti;
  * 
  * @see Type
  * 
- * @author Valentine_Bouché
+ * @author Valentine_Bouch��
  * @version 1.0
  */
 public class OptiTile {
@@ -38,6 +38,39 @@ public class OptiTile {
 		this.y = y;
 		this.type = type;
 		this.mark = false;
+	}
+	
+	/**
+     * Constructeur d'OptiTile avec les symboles
+     * 
+     * @param x
+     *          La position en x.
+     * @param y
+     *          La position en y.
+     * @param shape
+     *          La forme de la tuile.
+     */
+	public OptiTile(int x, int y, String shape) {
+		this.x = x;
+		this.y = y;
+		mark = false;
+		if(shape.contains("║")) {
+			type=Type.Vertical;
+		}else if(shape.contains("═")) {
+			type=Type.Horizontal;
+		}else if(shape.contains("╚")) {
+			type=Type.DownLeft;
+		}else if(shape.contains("╔")) {
+			type=Type.TopLeft;
+		}else if(shape.contains("╗")) {
+			type=Type.TopRight;
+		}else if(shape.contains("╝")) {
+			type=Type.DownRight;
+		}else if(shape.contains("╬")) {
+			type=Type.Cross;
+		}else {
+			type=Type.Empty;
+		}
 	}
 	
 	/**
@@ -74,10 +107,10 @@ public class OptiTile {
 	}
 	
 	/**
-     * Renvoie l'état du marquage de la tuile
+     * Renvoie l'��tat du marquage de la tuile
      * 
      * @return mark
-     *          L'état du marquage.
+     *          L'��tat du marquage.
      * 
      */
 	public boolean getMark() {
@@ -85,7 +118,7 @@ public class OptiTile {
     }
 	
 	/**
-     * Change l'état du marquage de la tuile
+     * Change l'��tat du marquage de la tuile
      * 
      * @param mark 
      *          Le nouveau marquage de la tuile.
