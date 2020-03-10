@@ -59,13 +59,13 @@ public class OptiTile {
 		}else if(shape.contains("═")) {
 			type=Type.Horizontal;
 		}else if(shape.contains("╚")) {
-			type=Type.TopRight;
-		}else if(shape.contains("╔")) {
-			type=Type.DownRight;
-		}else if(shape.contains("╗")) {
 			type=Type.DownLeft;
-		}else if(shape.contains("╝")) {
+		}else if(shape.contains("╔")) {
 			type=Type.TopLeft;
+		}else if(shape.contains("╗")) {
+			type=Type.TopRight;
+		}else if(shape.contains("╝")) {
+			type=Type.DownRight;
 		}else if(shape.contains("╬")) {
 			type=Type.Cross;
 		}else {
