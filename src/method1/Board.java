@@ -17,7 +17,7 @@ public class Board {
 		board = new Tile[LINE][ROW];
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[i].length; j++) {
-				board[i][j] = new Tile(); //tuile al���atoire
+				board[i][j] = new Tile(); //tuile aléatoire
 			}
 		}
 		longest = 0;
@@ -58,18 +58,18 @@ public class Board {
 				}
 			}
 
-			//mark colonne coll���e ��� gauche
+			//mark colonne collée à gauche
 			if(!board[i][0].isConnected(board[i-1][0], 1) || !board[i][0].isConnected(board[i][1], 2) || !board[i][0].isConnected(board[i+1][0], 3) || !board[i][0].isConnected(null, 4)) { 
 				board[i][0].setState(mark.DeadEnd);
 			}
 
-			//colonne coll���e ��� droite
+			//colonne collée à droite
 			if(!board[i][board[i].length-1].isConnected(board[i-1][board[i].length-1], 1) || !board[i][board[i].length-1].isConnected(null, 2) || !board[i][board[i].length-1].isConnected(board[i+1][board[i].length-1], 3) || !board[i][board[i].length-1].isConnected(board[i][board[i].length-2], 4)) { 
 				board[i][board[i].length-1].setState(mark.DeadEnd);
 			}
 		}
 
-		//premi���re ligne
+		//première ligne
 		for(int j=1; j<board[LINE-1].length-1; j++) {
 			if(isEmpty(0, j)) {
 				board[0][j].setState(mark.DeadEnd);
