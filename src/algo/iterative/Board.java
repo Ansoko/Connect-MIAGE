@@ -1,8 +1,8 @@
-package algo.iterativ;
+package algo.iterative;
 
 import java.util.List;
 
-import algo.iterativ.Tile.mark;
+import algo.iterative.Tile.mark;
 
 public class Board {
 	

@@ -1,4 +1,4 @@
-package algo.recursiv;
+package algo.recursive;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

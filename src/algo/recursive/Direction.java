@@ -1,4 +1,4 @@
-package algo.recursiv;
+package algo.recursive;
 
 /**
  * <b>Direction est une énumération représentant les 4 directions possibles de la recherche.</b>

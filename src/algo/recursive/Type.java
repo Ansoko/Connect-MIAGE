@@ -1,4 +1,4 @@
-package algo.recursiv;
+package algo.recursive;
 /**
  * <b>Type est une énumération représentant les 7 types possibles des tuiles.</b>
  * 
