@@ -7,18 +7,18 @@ import java.util.Map;
 /**
  * <b>Grid est la classe représentant une grille de jeu.</b>
  * <p>
- * Une grille est caractérisée par les informations suivantes :
+ * Une grille est caract��ris��e par les informations suivantes :
  * <ul>
  * <li>Un tableau de tuiles à 2 dimensions</li>
  * <li>Une liste de circuits qui la composent</li>
  * <li>La taille de son plus grand circuit</li>
- * <li>Son circuit fermé le plus long</li>
+ * <li>Son circuit ferm�� le plus long</li>
  * </ul>
  * </p>
  * 
  * @see Path, OptiTile
  * 
- * @author Valentine_Bouché
+ * @author Valentine_Bouch��
  * @version 1.0
  */
 public class Grid {
@@ -31,13 +31,13 @@ public class Grid {
 	static {
 		DrawMap = new HashMap<>();
 		DrawMap.put(Type.Empty, " ");
-		DrawMap.put(Type.DownLeft, "╚");
-		DrawMap.put(Type.DownRight, "╝");
-		DrawMap.put(Type.TopLeft, "╔");
-		DrawMap.put(Type.TopRight, "╗");
-		DrawMap.put(Type.Vertical, "║");
-		DrawMap.put(Type.Horizontal, "═");
-		DrawMap.put(Type.Cross, "╬");
+		DrawMap.put(Type.DownLeft, "���");
+		DrawMap.put(Type.DownRight, "���");
+		DrawMap.put(Type.TopLeft, "���");
+		DrawMap.put(Type.TopRight, "���");
+		DrawMap.put(Type.Vertical, "���");
+		DrawMap.put(Type.Horizontal, "���");
+		DrawMap.put(Type.Cross, "���");
 	}
 	
 	/**
@@ -73,14 +73,14 @@ public class Grid {
     }
 	
 	/**
-     * Créé un tableau aléatoire de tuiles et l'affiche à la fin
+     * Cr���� un tableau al��atoire de tuiles et l'affiche �� la fin
      * 
      */
 	public void createAleaTab() {
 	    this.maxLength = 0;
 		for (int i = 0; i < tab.length; i++) {
 			for (int j = 0; j < tab[i].length; j++) {
-				if(Math.random()*100 <= 75) {//test si on pose une tuile ou non à 75%
+				if(Math.random()*100 <= 75) {//test si on pose une tuile ou non �� 75%
 					int alea = 1 + (int)(Math.random() * 7);
 					switch (alea){
 					case(1):
@@ -126,14 +126,14 @@ public class Grid {
 	}
 	
 	/**
-     * Ajoute une tuile à une case de la grille
+     * Ajoute une tuile �� une case de la grille
      * 
      * @param x
      *          La position en x.
      * @param y
      *          La position en y.
      * @param t
-     *          La tuile à placer sur la case.
+     *          La tuile �� placer sur la case.
      * 
      */
 	public void setTile(int x, int y, OptiTile t){
@@ -168,7 +168,7 @@ public class Grid {
 	}
 	
 	/**
-     * Recherche le circuit le plus long parmis les circuits enregistrés
+     * Recherche le circuit le plus long parmis les circuits enregistr��s
      * 
      */
 	public void lookForLongest() { 
@@ -188,18 +188,18 @@ public class Grid {
 	}
 	
 	/**
-     * Affiche le résultat de la recherche du plus long circuit fermé
+     * Affiche le r��sultat de la recherche du plus long circuit ferm��
      * 
      */
 	public void getResult() {
 		if(this.maxLength != 0)
-			System.out.println("Le circuit fermé le plus long est de "+this.maxLength+" traits.");
+			System.out.println("Le circuit ferm�� le plus long est de "+this.maxLength+" traits.");
 		else
-			System.out.println("Il n'y a aucun circuit fermé.");
+			System.out.println("Il n'y a aucun circuit ferm��.");
 	}
 	
 	/**
-     * Renvoie la taille la plus grande enregistrée.
+     * Renvoie la taille la plus grande enregistr��e.
      * 
      * @return maxLength
      *              La taille la plus grande.

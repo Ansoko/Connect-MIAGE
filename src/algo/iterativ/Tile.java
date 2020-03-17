@@ -3,11 +3,6 @@ package algo.iterativ;
 import java.util.HashMap;
 import java.util.Map;
 
-<<<<<<< HEAD:src/algo/iterativ/Tile.java
-import algo.recursiv.Grid;
-
-=======
->>>>>>> 72585cebb26c97738705bbd9fd8f97dae5d74b73:src/method1/Tile.java
 public class Tile {
 
 	public enum mark{
@@ -18,7 +13,7 @@ public class Tile {
 
 	private mark state;
 
-	private int num; //numéro de la tuile correspond � son type
+	private int num; //num��ro de la tuile correspond ��� son type
 	/* 0 : vide
 	 * 1 : ns   2 : we 
 	 * 3 : ne   4 : se   5 : sw  6 : nw 
@@ -35,13 +30,13 @@ public class Tile {
 	static {
 		DrawMap2 = new HashMap<>();
 		DrawMap2.put(0, " ");
-		DrawMap2.put(3, "╚");
-		DrawMap2.put(6, "╝");
-		DrawMap2.put(4, "╔");
-		DrawMap2.put(5, "╗");
-		DrawMap2.put(1, "║");
-		DrawMap2.put(2, "═");
-		DrawMap2.put(7, "╬");
+		DrawMap2.put(3, "���");
+		DrawMap2.put(6, "���");
+		DrawMap2.put(4, "���");
+		DrawMap2.put(5, "���");
+		DrawMap2.put(1, "���");
+		DrawMap2.put(2, "���");
+		DrawMap2.put(7, "���");
 	}
 	
 	public Tile(String shape) {
@@ -50,31 +45,31 @@ public class Tile {
 		left = false;
 		right = false;
 		
-		if(shape.contains("║")) {
+		if(shape.contains("���")) {
 			up = true;
 			down = true;
 			num = 1;
-		}else if(shape.contains("═")) {
+		}else if(shape.contains("���")) {
 			left = true;
 			right = true;
 			num = 2;
-		}else if(shape.contains("╚")) {
+		}else if(shape.contains("���")) {
 			up = true;
 			right = true;
 			num = 3;
-		}else if(shape.contains("╔")) {
+		}else if(shape.contains("���")) {
 			down = true;
 			right = true;
 			num = 4;
-		}else if(shape.contains("╗")) {
+		}else if(shape.contains("���")) {
 			down = true;
 			left = true;
 			num = 5;
-		}else if(shape.contains("╝")) {
+		}else if(shape.contains("���")) {
 			up = true;
 			left = true;
 			num = 6;
-		}else if(shape.contains("╬")) {
+		}else if(shape.contains("���")) {
 			up = true;
 			down = true;
 			right = true;
@@ -156,17 +151,17 @@ public class Tile {
 	}
 
 	/**
-	 * isConnected retourne vrai si les deux tuilles peuvent �tre l'une � cot� de l'autre.
+	 * isConnected retourne vrai si les deux tuilles peuvent ���tre l'une ��� cot��� de l'autre.
 	 * 
 	 * @param t
-	 * (dans le cas où la tuille est au bord, on considérera le bord comme une tuille t==null)
+	 * (dans le cas o�� la tuille est au bord, on consid��rera le bord comme une tuille t==null)
 	 * @param pos
 	 * : 1=nord, 2=est, 3=sud, 4=ouest
 	 * @return 
 	 * <ul>
-	 * <li>Retourne VRAI si les tuilles sont connect�es,</li>
-	 * <li>Retourne FAUX si la tuille est connect�e � la tuille t alors qu'elle ne devrait pas,</li>
-	 * <li>Retourne VRAI si les tuilles ne sont pas connect�es.</li>
+	 * <li>Retourne VRAI si les tuilles sont connect���es,</li>
+	 * <li>Retourne FAUX si la tuille est connect���e ��� la tuille t alors qu'elle ne devrait pas,</li>
+	 * <li>Retourne VRAI si les tuilles ne sont pas connect���es.</li>
 	 * </ul>
 	 */
 	public boolean isConnected(Tile t, int pos) {	
@@ -177,7 +172,7 @@ public class Tile {
 		switch(pos) {
 		case 1:
 			if(t==null && !up)
-				return true; //pas connect� au bord, cad que la tuille peut �tre positionn�e ici
+				return true; //pas connect��� au bord, cad que la tuille peut ���tre positionn���e ici
 			if(t==null)
 				return false;
 
