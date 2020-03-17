@@ -45,31 +45,31 @@ public class Tile {
 		left = false;
 		right = false;
 		
-		if(shape.contains("���")) {
+		if(shape.contains("║")) {
 			up = true;
 			down = true;
 			num = 1;
-		}else if(shape.contains("���")) {
+		}else if(shape.contains("═")) {
 			left = true;
 			right = true;
 			num = 2;
-		}else if(shape.contains("���")) {
+		}else if(shape.contains("╚")) {
 			up = true;
 			right = true;
 			num = 3;
-		}else if(shape.contains("���")) {
+		}else if(shape.contains("╔")) {
 			down = true;
 			right = true;
 			num = 4;
-		}else if(shape.contains("���")) {
+		}else if(shape.contains("╗")) {
 			down = true;
 			left = true;
 			num = 5;
-		}else if(shape.contains("���")) {
+		}else if(shape.contains("╝")) {
 			up = true;
 			left = true;
 			num = 6;
-		}else if(shape.contains("���")) {
+		}else if(shape.contains("╬")) {
 			up = true;
 			down = true;
 			right = true;
