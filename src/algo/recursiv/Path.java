@@ -1,4 +1,4 @@
-package algo.opti;
+package algo.recursiv;
 //import java.util.logging.Logger;
 //import java.util.logging.Level;
 import java.util.*;

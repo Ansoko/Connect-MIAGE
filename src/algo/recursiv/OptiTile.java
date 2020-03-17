@@ -1,4 +1,4 @@
-package algo.opti;
+package algo.recursiv;
 
 /**
  * <b>OptiTile est la classe repr��sentant une tuile du jeu.</b>

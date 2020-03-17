@@ -1,9 +1,9 @@
-package method1;
+package algo.iterativ;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import algo.opti.Grid;
+import algo.recursiv.Grid;
 
 public class Tile {
 
