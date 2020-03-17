@@ -13,7 +13,7 @@ public class Tile {
 
 	private mark state;
 
-	private int num; //num��ro de la tuile correspond ��� son type
+	private int num; //numéro de la tuile correspond à son type
 	/* 0 : vide
 	 * 1 : ns   2 : we 
 	 * 3 : ne   4 : se   5 : sw  6 : nw 
@@ -30,13 +30,13 @@ public class Tile {
 	static {
 		DrawMap2 = new HashMap<>();
 		DrawMap2.put(0, " ");
-		DrawMap2.put(3, "���");
-		DrawMap2.put(6, "���");
-		DrawMap2.put(4, "���");
-		DrawMap2.put(5, "���");
-		DrawMap2.put(1, "���");
-		DrawMap2.put(2, "���");
-		DrawMap2.put(7, "���");
+		DrawMap2.put(3, "╚");
+		DrawMap2.put(6, "╝");
+		DrawMap2.put(4, "╔");
+		DrawMap2.put(5, "╗");
+		DrawMap2.put(1, "║");
+		DrawMap2.put(2, "═");
+		DrawMap2.put(7, "╬");
 	}
 	
 	public Tile(String shape) {
