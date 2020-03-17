@@ -3,8 +3,6 @@ package method1;
 import java.util.HashMap;
 import java.util.Map;
 
-import algo.opti.Grid;
-
 public class Tile {
 
 	public enum mark{
