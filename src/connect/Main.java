@@ -31,8 +31,8 @@ public class Main {
 		List<String[]> tableTest = uploadTest();
 		launchTestsOnAlgoRecursive(tableTest);
 		launchTestsOnAlgoIterative(tableTest);
-		
-		Graphic window = new Graphic();
+        
+        
 	}
 
 	private static List<String[]> uploadTest() throws IOException {
