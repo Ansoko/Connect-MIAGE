@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <b>Grid est la classe repr��sentant une grille de jeu.</b>
+ * <b>Grid est la classe représentant une grille de jeu.</b>
  * <p>
- * Une grille est caract������ris������e par les informations suivantes :
+ * Une grille est caractérisée par les informations suivantes :
  * <ul>
  * <li>Un tableau de tuiles à 2 dimensions</li>
  * <li>Une liste de circuits qui la composent</li>
@@ -31,13 +31,13 @@ public class Grid {
 	static {
 		DrawMap = new HashMap<>();
 		DrawMap.put(Type.Empty, " ");
-		DrawMap.put(Type.DownLeft, "���������");
-		DrawMap.put(Type.DownRight, "���������");
-		DrawMap.put(Type.TopLeft, "���������");
-		DrawMap.put(Type.TopRight, "���������");
-		DrawMap.put(Type.Vertical, "���������");
-		DrawMap.put(Type.Horizontal, "���������");
-		DrawMap.put(Type.Cross, "���������");
+		DrawMap.put(Type.DownLeft, "╚");
+		DrawMap.put(Type.DownRight, "╝");
+		DrawMap.put(Type.TopLeft, "╔");
+		DrawMap.put(Type.TopRight, "╗");
+		DrawMap.put(Type.Vertical, "║");
+		DrawMap.put(Type.Horizontal, "═");
+		DrawMap.put(Type.Cross, "╬");
 	}
 	
 	/**
@@ -199,7 +199,7 @@ public class Grid {
 	}
 	
 	/**
-     * Renvoie la taille la plus grande enregistr������e.
+     * Renvoie la taille la plus grande enregistrée.
      * 
      * @return maxLength
      *              La taille la plus grande.
