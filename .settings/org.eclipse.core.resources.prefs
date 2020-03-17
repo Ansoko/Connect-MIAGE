@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
-encoding//src/algo/iterativ/Board.java=UTF-8
-encoding//src/algo/iterativ/Tile.java=UTF-8
-encoding//src/algo/recursiv/Grid.java=UTF-8
-encoding//src/algo/recursiv/OptiTile.java=UTF-8
-encoding//src/algo/recursiv/Path.java=UTF-8
+encoding//src/algo/iterative/Board.java=UTF-8
+encoding//src/algo/iterative/Tile.java=UTF-8
+encoding//src/algo/recursive/Grid.java=UTF-8
+encoding//src/algo/recursive/OptiTile.java=UTF-8
+encoding//src/algo/recursive/Path.java=UTF-8

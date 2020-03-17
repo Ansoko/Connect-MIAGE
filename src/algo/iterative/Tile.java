@@ -1,4 +1,4 @@
-package algo.iterativ;
+package algo.iterative;
 
 import java.util.HashMap;
 import java.util.Map;
