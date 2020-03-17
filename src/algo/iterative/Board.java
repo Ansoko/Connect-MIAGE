@@ -3,7 +3,21 @@ package algo.iterative;
 import java.util.List;
 
 import algo.iterative.Tile.mark;
-
+/**
+ * <b>Board est la classe représentant un plateau de jeu.</b>
+ * <p>
+ * Un plateau est caractérisée par les informations suivantes :
+ * <ul>
+ * <li>Les dimensions du plateau</li>
+ * <li>Un tableau de tuiles à 2 dimensions</li>
+ * <li>La taille de son plus grand circuit</li>
+ * </ul>
+ * </p>
+ * 
+ * @see Tile
+ * 
+ * @author Anne-Sophie_Koch
+ */
 public class Board {
 	
 	public int LINE;
