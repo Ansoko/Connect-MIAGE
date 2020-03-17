@@ -3,8 +3,11 @@ package algo.iterativ;
 import java.util.HashMap;
 import java.util.Map;
 
+<<<<<<< HEAD:src/algo/iterativ/Tile.java
 import algo.recursiv.Grid;
 
+=======
+>>>>>>> 72585cebb26c97738705bbd9fd8f97dae5d74b73:src/method1/Tile.java
 public class Tile {
 
 	public enum mark{
