@@ -188,14 +188,14 @@ public class Grid {
 	}
 	
 	/**
-     * Affiche le r������sultat de la recherche du plus long circuit ferm������
+     * Affiche le résultat de la recherche du plus long circuit ferm������
      * 
      */
 	public void getResult() {
 		if(this.maxLength != 0)
-			System.out.println("Le circuit ferm������ le plus long est de "+this.maxLength+" traits.");
+			System.out.println("Le circuit fermé le plus long est de "+this.maxLength+" traits.");
 		else
-			System.out.println("Il n'y a aucun circuit ferm������.");
+			System.out.println("Il n'y a aucun circuit fermé.");
 	}
 	
 	/**
