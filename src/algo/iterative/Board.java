@@ -60,13 +60,13 @@ public class Board {
 
 	public void iterativResearch() {
 
-		//on ne s'occupe pas du mark des bords dans un premier temps
+		//on ne s'occupe pas de marquer les bords dans un premier temps
 		for(int i=1; i<board.length-1; i++) {
 			for(int j=1; j<board[i].length-1; j++) {
 				if(isEmpty(i, j)) {
 					board[i][j].setState(mark.DeadEnd);
 				}else if(!board[i][j].isConnected(board[i-1][j], 1) || !board[i][j].isConnected(board[i][j+1], 2) || !board[i][j].isConnected(board[i+1][j], 3)  || !board[i][j].isConnected(board[i][j-1], 4)) { 
-					//on regarde ��� chaque fois si elle est non connect���e ��� tous ses bords
+					//on regarde à chaque fois si elle est non connectée à tous ses bords
 					board[i][j].setState(mark.DeadEnd);
 				}
 			}
@@ -124,28 +124,28 @@ public class Board {
 					if(board[i][j].getState()==null) {
 						//on regarde ses voisins de branche, si ils sont marqu��� alors on marque aussi
 						//en haut
-						if(board[i][j].getNum()==1 || board[i][j].getNum()==3 || board[i][j].getNum()==6 || board[i][j].getNum()==7) {
+						if(board[i][j].getExit("up")) {
 							if(board[i-1][j].getState()==mark.DeadEnd) {
 								board[i][j].setState(mark.DeadEnd);
 								findMark = true;
 							}
 						}
 						//à droite
-						if(board[i][j].getNum()==2 || board[i][j].getNum()==3 || board[i][j].getNum()==4 || board[i][j].getNum()==7) {
+						if(board[i][j].getExit("right")) {
 							if(board[i][j+1].getState()==mark.DeadEnd) {
 								board[i][j].setState(mark.DeadEnd);
 								findMark = true;
 							}
 						}
 						//en bas
-						if(board[i][j].getNum()==1 || board[i][j].getNum()==4 || board[i][j].getNum()==5 || board[i][j].getNum()==7) {
+						if(board[i][j].getExit("down")) {
 							if(board[i+1][j].getState()==mark.DeadEnd) {
 								board[i][j].setState(mark.DeadEnd);
 								findMark = true;
 							}
 						}
 						//à gauche
-						if(board[i][j].getNum()==2 || board[i][j].getNum()==5 || board[i][j].getNum()==6 || board[i][j].getNum()==7) {
+						if(board[i][j].getExit("left")) {
 							if(board[i][j-1].getState()==mark.DeadEnd) {
 								board[i][j].setState(mark.DeadEnd);
 								findMark = true;
