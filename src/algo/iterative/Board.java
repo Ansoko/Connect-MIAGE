@@ -1,7 +1,6 @@
 package algo.iterative;
 
 import java.util.List;
-
 import algo.iterative.Tile.mark;
 /**
  * <b>Board est la classe représentant un plateau de jeu.</b>
