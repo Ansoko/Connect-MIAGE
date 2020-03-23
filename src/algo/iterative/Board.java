@@ -164,7 +164,7 @@ public class Board {
 				if(board[i][j].getState()==null) {
 					board[i][j].setState(mark.Connect);
 					count = calculateCircuit(i,j);
-					System.out.println("Circuit de longueur "+count+".");
+					//System.out.println("Circuit de longueur "+count+".");
 					if(count > longest) {
 						longest = count;
 					}
