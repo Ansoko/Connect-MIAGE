@@ -60,7 +60,6 @@ public class Board {
 	}
 
 	public void iterativResearch() {
-
 		//on ne s'occupe pas du mark des bords dans un premier temps
 		for(int i=1; i<board.length-1; i++) {
 			for(int j=1; j<board[i].length-1; j++) {
@@ -157,7 +156,7 @@ public class Board {
 			}
 		}
 
-
+		
 		//il ne reste plus que les circuits, qui ne sont pas marqués
 		int count = 0;
 		for(int i=0; i<board.length; i++) {
@@ -171,9 +170,9 @@ public class Board {
 					}
 				}
 			}
-
 		}
 		System.out.println("Le plus long chemin est de "+longest);
+
 	}
 
 	private boolean isEmpty(int i, int j) {
