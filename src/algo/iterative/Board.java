@@ -150,7 +150,7 @@ public class Board {
 	}
 
 	private boolean isEmpty(int i, int j) {
-		if (board[i][j]==null)
+		if (board[i][j]==null || board[i][j].getNum()==0)
 			return true;
 		return false;
 	}
