@@ -170,7 +170,12 @@ public class Board {
 				}
 			}
 		}
-		System.out.println("Le plus long chemin est de "+longest);
+		if(longest == 0) {
+		    System.out.println("Il n'y a aucun circuit fermé.");
+		}
+		else{
+		    System.out.println("Le plus long chemin est de "+longest);
+		}
 
 	}
 

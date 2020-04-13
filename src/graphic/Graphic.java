@@ -11,21 +11,18 @@ import javax.swing.ImageIcon;
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.List;
+import java.util.Scanner;
 import java.awt.GridLayout;
 
 public class Graphic extends JFrame  {
-	
-	public Graphic() {
-		
-		/*BufferedImage tabNb [] = new BufferedImage [8];
-		
-		
+	public Graphic(List<String[]> tableTest) {
+		BufferedImage tabNb [] = new BufferedImage [8];
 		JFrame frame = new JFrame("Test");
-		JPanel panel = new JPanel(new GridLayout(10, 10));
-		
+		JPanel panel = new JPanel(new GridLayout(tableTest.size(), tableTest.get(0).length));
 		frame.setContentPane(panel);
 		frame.setVisible(true);
-		
+		int ref;
 		try {
 		    tabNb[0] = ImageIO.read(new File("Images/empty.png"));
 		    tabNb[1] = ImageIO.read(new File("Images/vertical.png"));
@@ -36,65 +33,46 @@ public class Graphic extends JFrame  {
 		    tabNb[6] = ImageIO.read(new File("Images/topleft.png"));
 		    tabNb[7] = ImageIO.read(new File("Images/cross.png"));
 		    
-			for (int i = 0 ; i<100 ; i++) {
-				JLabel label = new JLabel();
-				panel.add(label);
-				int random = (int) (Math.random()* 8);
-				label.setIcon(new ImageIcon(tabNb[random]));
-			}
-		    
-
+		    for(String[] line : tableTest) {
+		        for(String s : line) {
+		            JLabel label = new JLabel();
+	                panel.add(label);
+	                switch(s) { // ║═╚╔╗╝╬
+	                    case "║":
+	                        ref = 1;
+                            break;
+	                    case "═":
+	                        ref = 2;
+                            break;
+	                    case "╝":
+	                        ref = 3;
+                            break;
+	                    case "╚":
+	                        ref = 4;
+                            break;
+	                    case "╗":
+	                        ref = 5;
+                            break;
+	                    case "╔":
+	                        ref = 6;
+                            break;
+	                    case "╬":
+	                        ref = 7;
+                            break;
+	                    default :
+	                        ref = 0;
+                            break;
+	                }
+	                label.setIcon(new ImageIcon(tabNb[ref]));
+		        }
+		    }
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
 
 		frame.pack();
 		frame.setMinimumSize(frame.getPreferredSize());
-	}*/
-    //AFFICHAGE DES PLATEAUX TESTS   
-     
-	// INIT
-        setTitle("Plateau de test");
-        setSize(1400,800);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(getParent());
- 
-         
-        // TEXTE
-      JTextArea text = new JTextArea(readFile("Samples/sujet_test1.txt"));
-      JTextArea text1 = new JTextArea(readFile("Samples/sujet_test10.txt"));
-         
-        // AJOUT DANS LA FENETRE
-        add(text,BorderLayout.CENTER);
-        add(text1,BorderLayout.EAST);
-         
-        // AFFICHE
-        setVisible(true);
-        
 	}
-        public String readFile( String file )
-        {
-            // LIS LE FICHIER
-            String lines = "";
-            String line;
-            try
-            {
-                // CREE LE FLUX
-                BufferedReader reader = new BufferedReader( new FileReader(file) );
-                 
-                // LIS LIGNE A LIGNE
-                while( (line = reader.readLine()) != null )
-                    lines += line+"\n";
-            }
-            catch( Exception e )
-            {
-                lines = "Une erreur s'est produite durant la lecture du flux : "+e.getMessage();
-            }  
-             
-            return lines;
-        }
-        
-	}	 
-	//	║═╚╔╗╝╬
+}
 
 

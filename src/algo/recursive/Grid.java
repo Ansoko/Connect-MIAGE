@@ -72,48 +72,7 @@ public class Grid {
 	    return tab;
     }
 	
-	/**
-     * Cr������������ un tableau al������atoire de tuiles et l'affiche ������ la fin
-     * 
-     */
-	public void createAleaTab() {
-	    this.maxLength = 0;
-		for (int i = 0; i < tab.length; i++) {
-			for (int j = 0; j < tab[i].length; j++) {
-				if(Math.random()*100 <= 75) {//test si on pose une tuile ou non ������ 75%
-					int alea = 1 + (int)(Math.random() * 7);
-					switch (alea){
-					case(1):
-						setTile(i, j, new OptiTile(i, j, Type.DownLeft));
-						break;
-					case(2):
-						setTile(i, j, new OptiTile(i, j, Type.DownRight));
-						break;
-					case(3):
-						setTile(i, j, new OptiTile(i, j, Type.TopLeft));
-						break;
-					case(4):
-						setTile(i, j, new OptiTile(i, j, Type.TopRight));
-						break;
-					case(5):
-						setTile(i, j, new OptiTile(i, j, Type.Vertical));
-						break;
-					case(6):
-						setTile(i, j, new OptiTile(i, j, Type.Horizontal));
-						break;
-					case(7):
-						setTile(i, j, new OptiTile(i, j, Type.Cross));
-						break;
-					default : 
-						System.out.println("Erreur remplissage grille");
-						break;
-					}
-				}else {
-					setTile(i, j, new OptiTile(i, j, Type.Empty));
-				}
-			}
-		}
-	}
+	
 	
 	/**
      * Retourne le tableau de tuiles
