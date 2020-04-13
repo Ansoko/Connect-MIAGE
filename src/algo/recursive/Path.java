@@ -43,8 +43,6 @@ public class Path {
 		this.optiTiles.add(starter);
 		starter.setMark(true);
 		this.fillPath(tab, starter.getX(), starter.getY());
-		if(this.closed)
-		    System.out.println("J'ai créé un trajet de valeur "+ this.closed);
 	}
 	
     /**
