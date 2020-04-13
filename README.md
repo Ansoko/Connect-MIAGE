@@ -1,4 +1,5 @@
 ﻿# Connect-MIAGE
+<<<<<<< HEAD
 Projet réalisé dans le cadre du cours de complexité de L3 MIAGE Semestre 6 de l'IDMC.
 Cours dirigé par Monsieur Pierre Monin. 
 
@@ -22,3 +23,5 @@ Version finale du projet. Dernière mise à jour le 13/04/2020.
 2. Suivre les indications et entrer le numéro du tableau à tester (entre 1 et 13), si on entre 0, un tableau est généré aléatoirement de taille aléatoire (1-12*1-30)
 3. Les résultats de temps d'exécution pour les deux algos s'affichent ainsi que la taille des circuits fermés trouvés pour le tableau test demandé.
 4. Taper un autre numéro pour continuer, 42 pour sortir.
+=======
+>>>>>>> 6b922f6862540c89ab3708c38d17230284c15308
