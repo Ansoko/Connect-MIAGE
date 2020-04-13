@@ -27,14 +27,14 @@ public class Graphic extends JFrame  {
 		frame.setVisible(true);
 		
 		try {
-		    tabNb[0] = ImageIO.read(new File("empty.png"));
-		    tabNb[1] = ImageIO.read(new File("vertical.png"));
-		    tabNb[2] = ImageIO.read(new File("horizontal.png"));
-		    tabNb[3] = ImageIO.read(new File("downright.png"));
-		    tabNb[4] = ImageIO.read(new File("downleft.png"));
-		    tabNb[5] = ImageIO.read(new File("topright.png"));
-		    tabNb[6] = ImageIO.read(new File("topleft.png"));
-		    tabNb[7] = ImageIO.read(new File("cross.png"));
+		    tabNb[0] = ImageIO.read(new File("Images/empty.png"));
+		    tabNb[1] = ImageIO.read(new File("Images/vertical.png"));
+		    tabNb[2] = ImageIO.read(new File("Images/horizontal.png"));
+		    tabNb[3] = ImageIO.read(new File("Images/downright.png"));
+		    tabNb[4] = ImageIO.read(new File("Images/downleft.png"));
+		    tabNb[5] = ImageIO.read(new File("Images/topright.png"));
+		    tabNb[6] = ImageIO.read(new File("Images/topleft.png"));
+		    tabNb[7] = ImageIO.read(new File("Images/cross.png"));
 		    
 			for (int i = 0 ; i<100 ; i++) {
 				JLabel label = new JLabel();
