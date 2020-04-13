@@ -17,7 +17,7 @@ public class Graphic extends JFrame  {
 	
 	public Graphic() {
 		
-		BufferedImage tabNb [] = new BufferedImage [8];
+		/*BufferedImage tabNb [] = new BufferedImage [8];
 		
 		
 		JFrame frame = new JFrame("Test");
@@ -50,9 +50,8 @@ public class Graphic extends JFrame  {
 
 		frame.pack();
 		frame.setMinimumSize(frame.getPreferredSize());
-	}
-    /* 
-     * AFFICHAGE DES PLATEAUX TESTS   
+	}*/
+    //AFFICHAGE DES PLATEAUX TESTS   
      
 	// INIT
         setTitle("Plateau de test");
@@ -62,8 +61,8 @@ public class Graphic extends JFrame  {
  
          
         // TEXTE
-      JTextArea text = new JTextArea(readFile("sujet_test.txt"));
-      JTextArea text1 = new JTextArea(readFile("sujet_test10.txt"));
+      JTextArea text = new JTextArea(readFile("Samples/sujet_test1.txt"));
+      JTextArea text1 = new JTextArea(readFile("Samples/sujet_test10.txt"));
          
         // AJOUT DANS LA FENETRE
         add(text,BorderLayout.CENTER);
@@ -94,7 +93,7 @@ public class Graphic extends JFrame  {
              
             return lines;
         }
-        */
+        
 	}	 
 	//	║═╚╔╗╝╬
 
